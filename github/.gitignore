@@ -1,0 +1,4 @@
+.token
+*.issues
+.vscode/
+venv/
