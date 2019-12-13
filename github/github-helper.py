@@ -4,6 +4,7 @@ import argparse
 import csv
 import collections
 import github
+import requests
 
 Issue = collections.namedtuple('Issue', ('repo_name', 'project', 'title_or_id', 'description'))
 
@@ -111,6 +112,25 @@ def add_issue_to_project_column(
     card = col.create_card(
         content_id=ghissue.id,
         content_type='Issue'
+    )
+
+    # If we had to create a new one move the card to the bottom.
+    # By default it gets added to the top and that's usually not what we want.
+    # This doesn't appear to be implemented in PyGitHub yet so this is a
+    # semi-manual call. We piggy back off of the PyGitHub Requester object
+    # to help.
+    card_pos = {
+        'position': 'bottom',
+        'column_id': col.id
+    }
+
+    resp = card._requester.requestJson(
+        'POST',
+        f'/projects/columns/cards/{card.id}/moves',
+        input=card_pos,
+        headers={
+            'Accept': 'application/vnd.github.inertia-preview+json'
+        }
     )
 
     return card
