@@ -151,14 +151,15 @@ def create_issues(org, issues_csv):
 
         print(f'Issue {ghissue.number}: {ghissue.title}')
 
-        # Now get the project this issue needs to be added to
-        ghproj = get_project(org, issue.project)
+        if issue.project is not None and int(issue.project) > 0:
+            # Now get the project this issue needs to be added to
+            ghproj = get_project(org, issue.project)
 
-        if ghproj is None:
-            print(f'Could not find project {issue.project}')
-            continue
+            if ghproj is None:
+                print(f'Could not find project {issue.project}')
+                continue
 
-        card = add_issue_to_project_column(ghproj, 'To do', ghissue)        
+            card = add_issue_to_project_column(ghproj, 'To do', ghissue)
 
 def main():
     parser = argparse.ArgumentParser()
