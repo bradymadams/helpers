@@ -10,7 +10,7 @@ Issue = collections.namedtuple('Issue', ('repo_name', 'project', 'title_or_id', 
 
 def get_token():
     if os.path.exists('.token'):
-        return open('.token', 'r').read()
+        return open('.token', 'r').read().strip('\n')
     return None
 
 def get_from_paginated_list(items, func):
