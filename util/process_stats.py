@@ -22,8 +22,8 @@ class ProcessStats:
 
         self.max_rss = 0
 
-        monitor_thread = threading.Thread(target=self._monitor)
-        monitor_thread.start()
+        self.monitor_thread = threading.Thread(target=self._monitor)
+        self.monitor_thread.start()
 
     def _monitor(self):
         last_print = 0
@@ -50,6 +50,10 @@ class ProcessStats:
 
     def wait(self):
         self.proc.wait()
+
+    def close(self):
+        self.proc.terminate()
+        self.monitor_thread.join()
 
 
 def run_and_get_max_rss(*args):
