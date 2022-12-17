@@ -1,5 +1,33 @@
+syntax on
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" map L to left (<-) and ; to right (->) so right hand sits on jkl;
+noremap ; l
+noremap l h
+
+map <F1> gT
+map <F2> gt
+
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+set nu
+set cursorline
+set cursorcolumn
+hi cursorline cterm=None ctermbg=243
+hi cursorcolumn cterm=None ctermbg=243
+
+highlight ExtraWhitespace ctermbg=9
+match ExtraWhitespace /\s\+$/
+autocmd BufNewFile,BufRead * match ExtraWhitespace /\s\+$/
+
+"highlight Todo ctermbg=51 ctermfg=0
+"match Todo /[tT][oO][dD][oO]/
+"autocmd BufNewFile,BufRead * match Todo /[tT][oO][dD][oO]/
+
+" Remove trailing whitespace before buffer write
+"autocmd BufWritePre * :%s/\s\+$//e
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -31,21 +59,21 @@ set smartindent
 set shiftwidth=4
 set tabstop=4
 autocmd FileType make setlocal noexpandtab
-autocmd BufEnter *.ifl setlocal filetype=json
 autocmd BufEnter *.mm setlocal filetype=json
+autocmd BufEnter *.smart setlocal filetype=json
 autocmd FileType yaml setlocal shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2
+autocmd FileType json setlocal shiftwidth=2
+autocmd FileType json setlocal tabstop=2
+
+set cino=(0,W4,m1
+set cino=N-s
 
 let fortran_free_source=1
 
 set path+=**
 set wildmenu
-set wildignore+=*/3rd/*
+" set wildignore+=*/3rd/*
 set wildignore+=*/build/*
 set wildignore+=*/doc/*
 
-"autocmd BufWritePre * :%s/\s\+$//e
-match Todo /\s\+$/
-
-"Remove all trailing whitespace by pressing F5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
