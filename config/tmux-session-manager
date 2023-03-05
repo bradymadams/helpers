@@ -1,0 +1,75 @@
+#! /bin/bash
+
+function attachOrKill() {
+    local SESSION=${1}
+    local KILL=${2}
+
+    if (tmux has-session -t ${SESSION} > /dev/null 2>&1); then
+        if [ "${KILL}" = "1" ]; then
+            tmux kill-session -t ${SESSION}
+        else
+            tmux attach-session -t ${SESSION}
+            exit 0
+        fi
+    fi
+}
+
+function threeVerticalPaneWindow() {
+    local SESSION=${1}
+    local WORKINGDIR=${2}
+    local AUXDIR=${3}
+    local VIMRC=${4}
+    local MYDISPLAY=${5}
+    local VIRTUAL_ENV=${6}
+
+    tmux new-session -d -c ${WORKINGDIR} -s ${SESSION} -n main -e VIMRC=${VIMRC} -e VIRTUAL_ENV=${VIRTUAL_ENV}
+
+    tmux split-window -h -c ${WORKINGDIR} -t ${SESSION}:0
+    tmux split-window -h -c ${WORKINGDIR} -t ${SESSION}:0
+
+    tmux select-layout -t ${SESSION}:0.0 even-horizontal
+
+    tmux split-window -v -c ${AUXDIR} -t ${SESSION}:0.2
+
+    if [ "${DISPLAY}" = "laptop" ]; then
+        tmux break-pane -s ${SESSION}:0.2
+        tmux join-pane -s ${SESSION}:0.2 -t ${SESSION}:1 -h
+    fi
+
+    tmux select-window -t ${SESSION}:0
+    tmux select-pane -t ${SESSION}:0.1
+
+    tmux attach-session -t ${SESSION}
+}
+
+APP=$1
+KILL=0
+DISPLAY=wide
+
+shift
+
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+
+    case $key in
+    --kill)
+        KILL=1
+        ;;
+    --display)
+        DISPLAY=${2}
+        shift
+        ;;
+    *)    # unknown option
+        echo "Unknown argument ${key}"
+        exit 1
+        ;;
+    esac
+
+    shift
+done
+
+source $(dirname $(readlink -f $0))/.local/tmux-app-sessions
+
+${APP} ${KILL} ${DISPLAY}
+

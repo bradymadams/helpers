@@ -1,0 +1,22 @@
+
+source $HOME/dev/helpers/config/.vimrc
+
+"
+" Python config
+"
+Plugin 'vim-python/python-syntax'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+
+let g:python_highlight_all = 1
+
+set signcolumn=yes
+set updatetime=300
+hi CocInlayHint ctermfg=99
+
+set wildignore+=*/venv/*
+set wildignore+=*/__pycache__/*
+
+nmap <silent> gd :call CocAction('jumpDefinition')<CR>
+inoremap <silent><expr> <C-space> coc#refresh()
+
