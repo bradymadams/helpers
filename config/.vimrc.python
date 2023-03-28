@@ -8,6 +8,9 @@ Plugin 'vim-python/python-syntax'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Suggested plugins:
+" CocInstall coc-pyright
+
 let g:python_highlight_all = 1
 
 set signcolumn=yes
