@@ -31,7 +31,7 @@ function threeVerticalPaneWindow() {
 
     tmux split-window -v -c ${AUXDIR} -t ${SESSION}:0.2
 
-    if [ "${DISPLAY}" = "laptop" ]; then
+    if [ "${MYDISPLAY}" = "laptop" ]; then
         tmux break-pane -s ${SESSION}:0.2
         tmux join-pane -s ${SESSION}:0.2 -t ${SESSION}:1 -h
     fi
@@ -39,12 +39,21 @@ function threeVerticalPaneWindow() {
     tmux select-window -t ${SESSION}:0
     tmux select-pane -t ${SESSION}:0.1
 
+    if [ "${MYDISPLAY}" = "wide" ]; then
+        # Widen the main/middle pane
+        tmux select-pane -t ${SESSION}:0.0
+        tmux resize-pane -L 10
+
+        tmux select-pane -t ${SESSION}:0.1
+        tmux resize-pane -R 10
+    fi
+
     tmux attach-session -t ${SESSION}
 }
 
 APP=$1
 KILL=0
-DISPLAY=wide
+MYDISPLAY=wide
 
 shift
 
@@ -71,5 +80,5 @@ done
 
 source $(dirname $(readlink -f $0))/.local/tmux-app-sessions
 
-${APP} ${KILL} ${DISPLAY}
+${APP} ${KILL} ${MYDISPLAY}
 
