@@ -58,14 +58,16 @@ set nofileignorecase
 set nowildignorecase
 
 autocmd FileType make setlocal noexpandtab
-autocmd BufEnter *.mm setlocal filetype=json
+autocmd BufEnter *.mm,*.smart,*.ssr,*.chop,*.modl setlocal filetype=json
 autocmd FileType yaml setlocal shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2
 
-
 au BufNewFile,BufRead *.ts set filetype=typescript
-autocmd FileType typescript setlocal shiftwidth=2
-autocmd FileType typescript setlocal tabstop=2
+autocmd FileType javascript,typescript setlocal shiftwidth=2
+autocmd FileType javascript,typescript setlocal tabstop=2
+
+au BufNewFile,BufRead *.yaml,*.yml so $HOME/dev/helpers/config/yaml.vim
+au BufNewFile,BufRead *.pug so $HOME/dev/helpers/config/pug.vim
 
 " let fortran_free_source=1
 
