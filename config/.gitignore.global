@@ -3,3 +3,4 @@
 *.swp
 .vscode/coc-settings.json
 compile_commands.json
+.DS_Store

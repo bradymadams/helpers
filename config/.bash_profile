@@ -1,5 +1,11 @@
 #! /bin/bash
 
+alias vimjq="vim -c \%\!jq"
+
+ltree() {
+    tree -I '*.pyc|__pycache__' -D $*
+}
+
 parse_git_branch() {
     GITBRANCHES=$(git branch -vv 2> /dev/null)
     GITBRANCH=$(echo "${GITBRANCHES}" | sed -e '/^[^*]/d')
