@@ -42,6 +42,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,6 +54,9 @@ set shiftwidth=4
 set tabstop=4
 set wildmenu
 
+" Remove auto continuation of comments
+autocmd FileType * set formatoptions-=cro
+
 " Make tab complete on vim command line case sensitive
 set nofileignorecase
 set nowildignorecase
@@ -63,11 +67,12 @@ autocmd FileType yaml setlocal shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2
 
 au BufNewFile,BufRead *.ts set filetype=typescript
-autocmd FileType javascript,typescript setlocal shiftwidth=2
-autocmd FileType javascript,typescript setlocal tabstop=2
+autocmd FileType javascript,typescript,coffee setlocal shiftwidth=2
+autocmd FileType javascript,typescript,coffee setlocal tabstop=2
 
 au BufNewFile,BufRead *.yaml,*.yml so $HOME/dev/helpers/config/yaml.vim
 au BufNewFile,BufRead *.pug so $HOME/dev/helpers/config/pug.vim
+au BufNewFile,BufRead *.coffee setlocal filetype=coffee
 
 " let fortran_free_source=1
 
@@ -79,12 +84,14 @@ set path+=**
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+nnoremap <F6> :!clang-format -i %
+
 " map F1 and F2 for left/right tab navigation
 "map <F1> gT
 "map <F2> gt
 
 " Enable folding
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=99
 
 set background=dark

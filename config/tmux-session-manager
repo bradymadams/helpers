@@ -22,8 +22,9 @@ function newSession() {
     local MYDISPLAY=${5}
     local NOATTACH=${6}
     local VIRTUAL_ENV=${7}
+    local NVM_USE=${8}
 
-    tmux new-session -d -c ${WORKINGDIR} -s ${SESSION} -n main -e VIMINIT="source ${VIMRC}" -e VIRTUAL_ENV=${VIRTUAL_ENV}
+    tmux new-session -d -c ${WORKINGDIR} -s ${SESSION} -n main -e VIMINIT="source ${VIMRC}" -e VIRTUAL_ENV=${VIRTUAL_ENV} -e NVM_USE=${NVM_USE}
 
     threeVerticalPaneWindow ${SESSION} ${WORKINGDIR} ${AUXDIR} ${MYDISPLAY} 0
 
