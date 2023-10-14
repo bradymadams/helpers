@@ -23,6 +23,11 @@ noremap ,, :buffer<space>
 noremap - :bprevious<CR>
 noremap = :bnext<CR>
 
+" Set cursor shapes
+let &t_ti = "\e[?1049h \e[2 q" " Set to block on vim open and retain information to restore scrolling buffer on exit
+let &t_SI = "\e[5 q" " Set to blinking vertical bar insert mode
+let &t_EI = "\e[2 q" " Set to block normal mode
+
 set nu
 set ruler
 set cursorline

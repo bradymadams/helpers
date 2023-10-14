@@ -28,3 +28,5 @@ if [ -n "${VIRTUAL_ENV}" ] && ! type deactivate >/dev/null 2>&1; then
     . "${VIRTUAL_ENV}/bin/activate"
 fi
 
+set -o vi
+
