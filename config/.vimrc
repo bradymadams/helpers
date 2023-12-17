@@ -4,6 +4,13 @@ set backspace=indent,eol,start
 set hidden
 filetype off                  " required
 
+" Use ctrl-[jkl;] to navigate split windows
+" Does not work because vim cannot capture CTRL+;  :(
+"nmap <silent> <c-j> :wincmd j<CR>
+"nmap <silent> <c-k> :wincmd k<CR>
+"nmap <silent> <c-l> :wincmd h<CR>
+"nmap <silent> <c-;> :wincmd l<CR>
+
 " map L to left (<-) and ; to right (->) so right hand sits on jkl;
 noremap ; l
 noremap l h
@@ -12,6 +19,7 @@ noremap l h
 "noremap <C-k> <C-w>k
 noremap <C-w>l <C-w>h
 noremap <C-w>; <C-w>l
+
 
 "noremap ,k :ls<CR>
 "noremap ,; :bnext<CR>
@@ -48,6 +56,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'lepture/vim-jinja'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -100,8 +111,13 @@ set foldmethod=syntax
 set foldlevel=99
 
 set background=dark
+set termguicolors
 
+"colorscheme space-vim-dark
+"hi Comment guifg=#5C6370 ctermfg=59
+"hi LineNr ctermbg=NONE guibg=NONE
+
+"colorscheme dracula
 colorscheme evening
-"hi Normal guifg=#ffffff guibg=#ff0000 gui=NONE cterm=NONE
-hi Normal ctermfg=231 ctermbg=None cterm=NONE
+hi Normal ctermbg=NONE guibg=NONE
 
