@@ -58,7 +58,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'lepture/vim-jinja'
-
+Plugin 'hashivim/vim-terraform'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -117,7 +117,7 @@ set termguicolors
 "hi Comment guifg=#5C6370 ctermfg=59
 "hi LineNr ctermbg=NONE guibg=NONE
 
-"colorscheme dracula
-colorscheme evening
+colorscheme dracula
+"colorscheme evening
 hi Normal ctermbg=NONE guibg=NONE
 
