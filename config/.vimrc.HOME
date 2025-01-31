@@ -1,0 +1,7 @@
+
+if empty($VIMRC)
+    source $HOME/dev/helpers/config/.vimrc
+else
+    source $VIMRC
+end
+

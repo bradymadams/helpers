@@ -7,3 +7,4 @@ third-party/
 compile_commands.json
 .DS_Store
 brady.tfvars
+.aider*
