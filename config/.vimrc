@@ -2,6 +2,7 @@ syntax on
 set nocompatible              " be iMproved, required
 set backspace=indent,eol,start
 set hidden
+set relativenumber
 filetype off                  " required
 
 " Use ctrl-[jkl;] to navigate split windows
