@@ -111,6 +111,8 @@ nnoremap <F6> :!clang-format -i %
 set foldmethod=syntax
 set foldlevel=99
 
+autocmd FileType python setlocal foldmethod=indent
+
 set background=dark
 set termguicolors
 
