@@ -7,6 +7,7 @@ TGTDIR=${1:-${HOME}}
 ln -sf ${CFGDIR}/.vimrc.HOME ${TGTDIR}/.vimrc
 ln -sf ${CFGDIR}/.tmux.conf ${TGTDIR}/.tmux.conf
 ln -sf ${CFGDIR}/.inputrc ${TGTDIR}/.inputrc
+ln -sf ${CFGDIR}/nvim ${XDG_CONFIG_HOME:-S{HOME}/.config}
 
 git config --global --add alias.lg "log --oneline"
 git config --global --add core.editor vim
