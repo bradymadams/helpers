@@ -3,6 +3,10 @@
 vim.keymap.set('n', 'l', 'h', { noremap = true })
 vim.keymap.set('n', ';', 'l', { noremap = true })
 
+vim.opt.ruler = true
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
 -- Enable line numbers with relative numbering
-vim.opt.number = true      -- Show current line number
-vim.opt.relativenumber = true  -- Show relative line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
