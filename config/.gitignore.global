@@ -1,9 +1,11 @@
 ~/
 .cache/
-.local
+.local/
+.lua/
 third-party/
 *.swp
 .vscode/coc-settings.json
+.vscode/init.lua
 compile_commands.json
 .DS_Store
 brady.tfvars

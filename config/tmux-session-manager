@@ -18,13 +18,13 @@ function newSession() {
     local SESSION=${1}
     local WORKINGDIR=${2}
     local AUXDIR=${3}
-    local NVIMCFG=${4}
+    local NVIM_MODULE_PATH=${4}
     local MYDISPLAY=${5}
     local NOATTACH=${6}
     local VIRTUAL_ENV=${7}
     local NVM_USE=${8}
 
-    tmux new-session -d -c ${WORKINGDIR} -s ${SESSION} -n main -e NVIMCFG=${NVIMCFG} -e VIRTUAL_ENV=${VIRTUAL_ENV} -e NVM_USE=${NVM_USE}
+    tmux new-session -d -c ${WORKINGDIR} -s ${SESSION} -n main -e NVIM_MODULE_PATH=${NVIM_MODULE_PATH} -e VIRTUAL_ENV=${VIRTUAL_ENV} -e NVM_USE=${NVM_USE}
 
     threeVerticalPaneWindow ${SESSION} ${WORKINGDIR} ${AUXDIR} ${MYDISPLAY} 0
 
