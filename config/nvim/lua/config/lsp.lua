@@ -24,6 +24,8 @@ lspconfig.pyright.setup({
   capabilities = capabilities,
 })
 
+lspconfig.ruff.setup({})
+
 --[[
 -- TypeScript
 lspconfig.tsserver.setup {
