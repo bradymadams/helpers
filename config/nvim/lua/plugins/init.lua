@@ -25,7 +25,8 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
-  -- UI enhancements (optional)
+  -- UI stuff
+  { "Mofiqul/dracula.nvim" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-tree/nvim-web-devicons" },
 }

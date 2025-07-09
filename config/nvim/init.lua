@@ -18,18 +18,9 @@ require("config.lsp")
 require("config.completion")
 require("config.lsp_signature")
 require("config.formatting")
+require("config.statusline")
+require("config.telescope")
+require("config.treesitter")
 
--- Remap navigation keys
--- 'l' to move left and ';' to move right
---[[
-vim.keymap.set('n', 'l', 'h', { noremap = true })
-vim.keymap.set('n', ';', 'l', { noremap = true })
+vim.cmd("colorscheme dracula")
 
-vim.opt.ruler = true
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
-
--- Enable line numbers with relative numbering
-vim.opt.number = true
-vim.opt.relativenumber = true
-]]
