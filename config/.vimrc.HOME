@@ -1,7 +1,9 @@
 
-if empty($VIMRC)
+if !has('nvim')
+  if empty($VIMRC)
     source $HOME/dev/helpers/config/.vimrc
-else
+  else
     source $VIMRC
+  end
 end
 
