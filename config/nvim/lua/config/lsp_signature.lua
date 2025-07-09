@@ -5,9 +5,8 @@ require("lsp_signature").setup({
   hint_enable = true,
   hint_prefix = "⏩️ ", -- fancy prefix for hints
   handler_opts = {
-    border = "rounded"
+    border = "rounded",
   },
   max_height = 12,
   max_width = 80,
 })
-

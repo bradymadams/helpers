@@ -1,6 +1,16 @@
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    "c", "cpp", "python", "javascript", "typescript", "tsx", "lua", "vim", "bash", "json", "yaml"
+    "c",
+    "cpp",
+    "python",
+    "javascript",
+    "typescript",
+    "tsx",
+    "lua",
+    "vim",
+    "bash",
+    "json",
+    "yaml",
   },
   highlight = {
     enable = true,

@@ -10,12 +10,12 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 0
 
 -- Remap navigation keys
 -- 'l' to move left and ';' to move right
-vim.keymap.set('n', 'l', 'h', { noremap = true })
-vim.keymap.set('n', ';', 'l', { noremap = true })
+vim.keymap.set("n", "l", "h", { noremap = true })
+vim.keymap.set("n", ";", "l", { noremap = true })
 
 vim.g.mapleader = " "
 
@@ -30,4 +30,3 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   command = "checktime",
 })
-

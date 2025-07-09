@@ -18,4 +18,3 @@ cmp.setup({
     end,
   },
 })
-

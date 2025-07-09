@@ -4,6 +4,7 @@ export HISTCONTROL=ignoredups:erasedups
 export EDITOR=vim
 
 alias python="python3"
+alias vim="nvim"
 alias vimjq="vim -c \%\!jq"
 alias ccat="pygmentize -g"
 alias ls="ls --color=always --group-directories-first"
