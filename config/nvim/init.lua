@@ -22,16 +22,14 @@ require("config.statusline")
 require("config.telescope")
 require("config.treesitter")
 
-
 vim.cmd("colorscheme dracula")
-
 
 -- Last step is to load a project specific lua module, if requested
 -- This checks for a module path by first checking $NVIM_MODULE_PATH
 -- If that isn't set then the presence of a .lua directory is checked.
 -- Then the presence of init.lua in the module dir is checked and if it exists
 -- it is loaded and if a setup() function exists, it is called.
-local uv = vim.uv or vim.loop  -- Neovim compatibility: `vim.uv` for newer versions, fallback to `vim.loop`
+local uv = vim.uv or vim.loop -- Neovim compatibility: `vim.uv` for newer versions, fallback to `vim.loop`
 
 -- 1. Determine module path
 local project_init = vim.env.NVIM_MODULE_PATH
@@ -64,4 +62,3 @@ if project_init and project_init ~= "" then
     vim.notify("init.lua loaded but no setup() function found", vim.log.levels.WARN)
   end
 end
-
