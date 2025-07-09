@@ -21,8 +21,7 @@ require("config.formatting")
 require("config.statusline")
 require("config.telescope")
 require("config.treesitter")
-
-vim.cmd("colorscheme dracula")
+require("config.theme")
 
 -- Last step is to load a project specific lua module, if requested
 -- This checks for a module path by first checking $NVIM_MODULE_PATH

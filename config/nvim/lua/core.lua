@@ -19,6 +19,8 @@ vim.keymap.set("n", "l", "h", { noremap = true })
 vim.keymap.set("n", ";", "l", { noremap = true })
 vim.keymap.set("n", "<C-w>l", "<C-w>h", { noremap = true })
 vim.keymap.set("n", "<C-w>;", "<C-w>l", { noremap = true })
+vim.keymap.set("n", "-", ":bprevious<CR>", { noremap = true })
+vim.keymap.set("n", "=", ":bnext<CR>", { noremap = true })
 
 vim.g.mapleader = " "
 
