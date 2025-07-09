@@ -1,5 +1,8 @@
 #! /bin/bash
 
+export HISTCONTROL=ignoredups:erasedups
+export EDITOR=vim
+
 alias python="python3"
 alias vimjq="vim -c \%\!jq"
 alias ccat="pygmentize -g"
@@ -24,11 +27,24 @@ get_aws_profile() {
 #export PS1="\u@\h \[\033[36m\]\W\[\033[00m\]\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
 export PS1="\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n\[\033[31m\]\$(get_aws_profile)\[\033[00m\]\[\033[36m\]\w\[\033[00m\] $ "
 
-export EDITOR=vim
-
 if [ -n "${VIRTUAL_ENV}" ] && ! type deactivate >/dev/null 2>&1; then
     . "${VIRTUAL_ENV}/bin/activate"
 fi
 
 set -o vi
+
+gitview() {
+    if [ $# -lt 2 ]; then
+        echo "Usage: gitview <branch-or-commit> <path/to/file>"
+        return 1
+    fi
+
+    local ref=$1
+    local filepath=$2
+    local filename=$(basename "$filepath")
+    local ext="${filename##*.}"
+    local tmpfile="/tmp/gitview-$filename"
+
+    git show "$ref:$filepath" > "$tmpfile" && vim "$tmpfile"
+}
 
