@@ -34,3 +34,5 @@ keymap("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Grep
 keymap("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "List open buffers" })
 keymap("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "Show diagnostics" })
 keymap("n", "<leader>fr", require("telescope.builtin").lsp_references, { desc = "LSP references" })
+keymap("n", "<leader>fo", require("telescope.builtin").lsp_document_symbols, { desc = "Document symbols" })
+keymap("n", "<leader>fw", require("telescope.builtin").lsp_workspace_symbols, { desc = "Workspace symbols" })
