@@ -38,3 +38,12 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   command = "checktime",
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  callback = function()
+    vim.bo.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for
+    vim.bo.shiftwidth = 2 -- Number of spaces used for autoindent
+    vim.bo.softtabstop = 2 -- Number of spaces for <Tab> when editing
+  end,
+})

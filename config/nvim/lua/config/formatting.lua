@@ -30,6 +30,10 @@ null_ls.setup({
     ruff_formatter(),
     --null_ls.builtins.formatting.ruff,
     --null_ls.builtins.diagnostics.ruff,
+    -- JS/TS formatting
+    null_ls.builtins.formatting.prettier.with({
+      command = "./node_modules/.bin/prettier",
+    }),
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

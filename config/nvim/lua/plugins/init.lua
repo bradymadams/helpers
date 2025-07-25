@@ -4,6 +4,15 @@ return {
   -- LSP Support
   { "neovim/nvim-lspconfig" },
 
+  -- JS/TS LSP
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("typescript-tools").setup({})
+    end,
+  },
+
   -- Autocompletion
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },

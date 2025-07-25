@@ -26,16 +26,10 @@ lspconfig.pyright.setup({
 
 lspconfig.ruff.setup({})
 
---[[
--- TypeScript
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-]]
-
 -- C++ (using clangd)
 lspconfig.clangd.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
+
+-- JS/TS LSP is provided by pmizio/typescript-tools.nvim plugin
