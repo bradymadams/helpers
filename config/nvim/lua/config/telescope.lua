@@ -9,7 +9,7 @@ require("telescope").setup({
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
     -- optional extra filters
-    file_ignore_patterns = { "node_modules", "%.git/", "dist", "build", ".venv" },
+    file_ignore_patterns = { "node_modules/", "%.git/", "dist/", "build/", ".venv/", "3rd/" },
     vimgrep_arguments = {
       "rg",
       "--color=never",
@@ -29,7 +29,8 @@ require("telescope").setup({
 -- Load Telescope built-in pickers with keymaps
 local keymap = vim.keymap.set
 
-keymap("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "Find files" })
+keymap("n", "<leader>ff", require("telescope.builtin").git_files, { desc = "Find files (git only)" })
+keymap("n", "<leader>fF", require("telescope.builtin").find_files, { desc = "Find files" })
 keymap("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Grep files" })
 keymap("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "List open buffers" })
 keymap("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "Show diagnostics" })
