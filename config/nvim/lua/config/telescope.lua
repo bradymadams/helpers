@@ -1,4 +1,5 @@
 local telescope = require("telescope")
+local builtin = require("telescope.builtin")
 
 -- Setup with defaults
 require("telescope").setup({
@@ -26,14 +27,18 @@ require("telescope").setup({
   },
 })
 
+function doc_symbols()
+  builtin.lsp_document_symbols({ symbol_width = 60, ignore_symbols = { "field", "namespace", "property", "variable" } })
+end
+
 -- Load Telescope built-in pickers with keymaps
 local keymap = vim.keymap.set
 
-keymap("n", "<leader>ff", require("telescope.builtin").git_files, { desc = "Find files (git only)" })
-keymap("n", "<leader>fF", require("telescope.builtin").find_files, { desc = "Find files" })
-keymap("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Grep files" })
-keymap("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "List open buffers" })
-keymap("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "Show diagnostics" })
-keymap("n", "<leader>fr", require("telescope.builtin").lsp_references, { desc = "LSP references" })
-keymap("n", "<leader>fo", require("telescope.builtin").lsp_document_symbols, { desc = "Document symbols" })
-keymap("n", "<leader>fw", require("telescope.builtin").lsp_workspace_symbols, { desc = "Workspace symbols" })
+keymap("n", "<leader>ff", builtin.git_files, { desc = "Find files (git only)" })
+keymap("n", "<leader>fF", builtin.find_files, { desc = "Find files" })
+keymap("n", "<leader>fg", builtin.live_grep, { desc = "Grep files" })
+keymap("n", "<leader>fb", builtin.buffers, { desc = "List open buffers" })
+keymap("n", "<leader>fd", builtin.diagnostics, { desc = "Show diagnostics" })
+keymap("n", "<leader>fr", builtin.lsp_references, { desc = "LSP references" })
+keymap("n", "<leader>fo", doc_symbols, { desc = "Document symbols" })
+keymap("n", "<leader>fw", builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
