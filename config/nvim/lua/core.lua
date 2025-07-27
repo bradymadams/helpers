@@ -47,3 +47,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.softtabstop = 2 -- Number of spaces for <Tab> when editing
   end,
 })
+
+-- Switch between source and header in C++ files
+vim.keymap.set("n", "<leader>h", "<Cmd>ClangdSwitchSourceHeader<CR>", { noremap = true, silent = true })
