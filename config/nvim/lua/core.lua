@@ -15,7 +15,7 @@ vim.opt.mouse = ""
 
 -- Remap navigation keys
 -- 'l' to move left and ';' to move right
-for i, s in ipairs({ "n", "v" }) do
+for i, s in ipairs({ "n", "v", "o" }) do
   vim.keymap.set(s, "l", "h", { noremap = true })
   vim.keymap.set(s, ";", "l", { noremap = true })
   vim.keymap.set(s, "<C-w>l", "<C-w>h", { noremap = true })
