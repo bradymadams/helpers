@@ -31,6 +31,10 @@ function doc_symbols()
   builtin.lsp_document_symbols({ symbol_width = 60, ignore_symbols = { "field", "namespace", "property", "variable" } })
 end
 
+function workspace_symbols()
+  builtin.lsp_dynamic_workspace_symbols({ symbol_width = 60 })
+end
+
 -- Load Telescope built-in pickers with keymaps
 local keymap = vim.keymap.set
 
@@ -41,4 +45,4 @@ keymap("n", "<leader>fb", builtin.buffers, { desc = "List open buffers" })
 keymap("n", "<leader>fd", builtin.diagnostics, { desc = "Show diagnostics" })
 keymap("n", "<leader>fr", builtin.lsp_references, { desc = "LSP references" })
 keymap("n", "<leader>fo", doc_symbols, { desc = "Document symbols" })
-keymap("n", "<leader>fw", builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
+keymap("n", "<leader>fw", workspace_symbols, { desc = "Workspace symbols" })
