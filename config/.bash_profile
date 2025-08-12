@@ -27,7 +27,7 @@ get_aws_profile() {
 }
 
 #export PS1="\u@\h \[\033[36m\]\W\[\033[00m\]\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
-export PS1="\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n\[\033[31m\]\$(get_aws_profile)\[\033[00m\]\[\033[36m\]\w\[\033[00m\] $ "
+export PS1="\[\033[90m\]\$(parse_git_branch)\[\033[00m\]\n\[\033[31m\]\$(get_aws_profile)\[\033[00m\]\[\033[36m\]\w\[\033[00m\] $ "
 
 if [ -n "${VIRTUAL_ENV}" ] && ! type deactivate >/dev/null 2>&1; then
     . "${VIRTUAL_ENV}/bin/activate"
