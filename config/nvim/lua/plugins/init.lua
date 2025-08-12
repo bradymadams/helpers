@@ -35,6 +35,7 @@ return {
   },
 
   -- UI stuff
+  { "sindrets/diffview.nvim" },
   { "Mofiqul/dracula.nvim" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-tree/nvim-web-devicons" },
