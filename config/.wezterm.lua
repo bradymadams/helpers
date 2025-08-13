@@ -17,12 +17,49 @@ config.leader = {
   timeout_milliseconds = 2000,
 }
 
+-- Simple file existence check
+local function file_exists(path)
+  local f = io.open(path, "r")
+  if f then
+    f:close()
+    return true
+  end
+  return false
+end
+
+function find_and_run_workspace_setup(window, pane)
+  local workspace_setup_func
+  local workspace_setup_file = wezterm.config_dir .. "/.wezterm-workspace-setup.lua"
+  if file_exists(workspace_setup_file) then
+    local setup_chunk, err = loadfile(workspace_setup_file)
+    if not setup_chunk then
+      wezterm.log_error("Failed to load " .. workspace_setup_file .. ": " .. err)
+    else
+      workspace_setup_func = setup_chunk()
+      if type(workspace_setup_func) ~= "function" then
+        wezterm.log_error(workspace_setup_file .. " did not return a function")
+      else
+        workspace_setup_func(window, pane)
+      end
+    end
+  else
+    wezterm.log_info("No wezterm workspace setup file found at " .. workspace_setup_file)
+  end
+end
+
 config.keys = {
   -- Workspaces / Sessions
   {
     key = "s",
     mods = "LEADER",
     action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }),
+  },
+  {
+    key = "W",
+    mods = "LEADER|SHIFT",
+    action = wezterm.action_callback(function(window, pane)
+      find_and_run_workspace_setup(window, pane)
+    end),
   },
   -- Tab management
   {
