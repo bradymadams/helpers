@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+config.default_workspace = "main"
 config.color_scheme = "Dracula"
 --config.font = wezterm.font('Fira Code')
 config.font_size = 10
