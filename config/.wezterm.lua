@@ -10,6 +10,7 @@ config.window_background_opacity = 0.9
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.tab_max_width = 32
+config.xcursor_theme = "Yaru" -- https://github.com/wezterm/wezterm/issues/3751
 
 config.leader = {
   key = "a",
