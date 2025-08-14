@@ -6,7 +6,7 @@ config.default_workspace = "main"
 config.color_scheme = "Dracula"
 --config.font = wezterm.font('Fira Code')
 config.font_size = 10
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.tab_max_width = 32
@@ -25,6 +25,11 @@ function find_and_run_workspace_setup(window, pane)
 end
 
 config.keys = {
+  {
+    key = 'F',
+    mods = 'LEADER|SHIFT',
+    action = wezterm.action.ToggleFullScreen,
+  },
   -- Workspaces / Sessions
   {
     key = "s",
