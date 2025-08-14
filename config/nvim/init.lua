@@ -38,4 +38,3 @@ end
 
 -- Apply Neovim project-specific settings
 devenv.setup_project(project_name, "neovim")
-
