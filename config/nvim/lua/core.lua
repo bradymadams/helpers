@@ -25,6 +25,9 @@ end
 vim.keymap.set("n", "-", ":bprevious<CR>", { noremap = true })
 vim.keymap.set("n", "=", ":bnext<CR>", { noremap = true })
 
+vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+
 vim.g.mapleader = " "
 
 --vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
