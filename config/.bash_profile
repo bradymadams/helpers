@@ -26,14 +26,38 @@ get_aws_profile() {
     fi
 }
 
-#export PS1="\u@\h \[\033[36m\]\W\[\033[00m\]\[\033[32m\]\$(parse_git_branch)\[\033[00m\]\n$ "
-export PS1="\[\033[90m\]\$(parse_git_branch)\[\033[00m\]\n\[\033[31m\]\$(get_aws_profile)\[\033[00m\]\[\033[36m\]\w\[\033[00m\] $ "
+set_prompt() {
+    export PS1="\[\033[90m\]\$(parse_git_branch)\[\033[00m\]\n\[\033[31m\]\$(get_aws_profile)\[\033[00m\]\[\033[36m\]\w\[\033[00m\] $ "
+}
 
-if [ -n "${VIRTUAL_ENV}" ] && ! type deactivate >/dev/null 2>&1; then
-    . "${VIRTUAL_ENV}/bin/activate"
-fi
+# Auto-activate nearest .venv once at shell startup
+auto_activate_venv() {
+    local dir=$(pwd)
+    local venv_dir=""
 
-set -o vi
+    # If VIRTUAL_ENV is already set, treat as override
+    if [ -n "$VIRTUAL_ENV" ] && [ -d "$VIRTUAL_ENV" ]; then
+        # Only source if it's not already active in this shell
+        if [ "$VIRTUAL_ENV" != "$(pwd)" ]; then
+            source "$VIRTUAL_ENV/bin/activate"
+        fi
+        return
+    fi
+
+    # Search upward for .venv directory, stopping at $HOME
+    while [ "$dir" != "$HOME" ] && [ "$dir" != "/" ]; do
+        if [ -d "$dir/.venv" ]; then
+            venv_dir="$dir/.venv"
+            break
+        fi
+        dir=$(dirname "$dir")
+    done
+
+    # Activate if found
+    if [ -n "$venv_dir" ]; then
+        source "$venv_dir/bin/activate"
+    fi
+}
 
 gitview() {
     if [ $# -lt 2 ]; then
@@ -49,4 +73,13 @@ gitview() {
 
     git show "$ref:$filepath" > "$tmpfile" && vim "$tmpfile"
 }
+
+# If interactive shell, set it up
+case $- in
+    *i*)
+        set -o vi
+        set_prompt
+        auto_activate_venv
+        ;;
+esac
 
