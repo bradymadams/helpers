@@ -2,15 +2,36 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.default_workspace = "main"
+config.default_workspace = "~"
 config.color_scheme = "Dracula"
---config.font = wezterm.font('Fira Code')
 config.font_size = 10
 config.window_background_opacity = 1
 config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = true
 config.tab_max_width = 32
 config.xcursor_theme = "Yaru" -- https://github.com/wezterm/wezterm/issues/3751
+
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+
+workspace_switcher.get_choices = function(opts)
+  -- omits zoxide from workspace_switcher usage
+  return workspace_switcher.choices.get_workspace_elements({})
+end
+
+workspace_switcher.workspace_formatter = function(label)
+  return wezterm.format({
+    { Text = "🔷 " .. label },
+  })
+end
+
+wezterm.on("smart_workspace_switcher.workspace_switcher.chosen", function(window, workspace)
+  local gui_win = window:gui_window()
+  local base_path = string.gsub(workspace, "(.*[/\\])(.*)", "%2")
+end)
+
+wezterm.on("update-status", function(window, pane)
+  window:set_right_status(window:active_workspace() .. " 🟢")
+end)
 
 config.leader = {
   key = "a",
@@ -26,15 +47,21 @@ end
 
 config.keys = {
   {
-    key = 'F',
-    mods = 'LEADER|SHIFT',
+    key = "F",
+    mods = "LEADER|SHIFT",
     action = wezterm.action.ToggleFullScreen,
   },
   -- Workspaces / Sessions
   {
     key = "s",
     mods = "LEADER",
-    action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }),
+    --action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }),
+    action = workspace_switcher.switch_workspace(),
+  },
+  {
+    key = "s",
+    mods = "CTRL",
+    action = workspace_switcher.switch_to_prev_workspace(),
   },
   {
     key = "W",
