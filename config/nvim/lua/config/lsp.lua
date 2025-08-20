@@ -2,7 +2,7 @@
 local lspconfig = require("lspconfig")
 
 -- Attach function to set keymaps and capabilities
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   local opts = { buffer = bufnr }
   local keymap = vim.keymap.set
   keymap("n", "gd", vim.lsp.buf.definition, opts)
@@ -10,9 +10,12 @@ local on_attach = function(_, bufnr)
   keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
   keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
   keymap("n", "gr", vim.lsp.buf.references, opts)
+
+  --[[ See formatting.lua
   keymap("n", "<leader>f", function()
     vim.lsp.buf.format({ async = true })
   end, opts)
+  ]]
 end
 
 -- Common capabilities (optional: for completion integration)
@@ -32,4 +35,8 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
 })
 
--- JS/TS LSP is provided by pmizio/typescript-tools.nvim plugin
+-- JS/TS
+lspconfig.ts_ls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
