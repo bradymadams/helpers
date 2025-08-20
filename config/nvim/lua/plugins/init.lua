@@ -34,6 +34,9 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
+  -- Undotree
+  { "mbbill/undotree" },
+
   -- UI stuff
   { "sindrets/diffview.nvim" },
   { "Mofiqul/dracula.nvim" },
