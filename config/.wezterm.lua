@@ -5,7 +5,6 @@ local config = wezterm.config_builder()
 config.default_workspace = "~"
 config.color_scheme = "Dracula"
 config.font_size = 10
-config.window_background_opacity = 0.95
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = true
 config.tab_max_width = 32
@@ -33,17 +32,22 @@ wezterm.on("update-status", function(window, pane)
   window:set_right_status(window:active_workspace() .. " 🟢")
 end)
 
+-- Local setup
+local home = os.getenv("HOME")
+local devenv = dofile(home .. "/.devenv.lua")
+
+devenv.setup_local_config(config)
+
+function find_and_run_workspace_setup(window, pane)
+  devenv.setup_wezterm_workspaces(window, pane)
+end
+
+-- Default key mappings
 config.leader = {
   key = "a",
   mods = "CTRL",
   timeout_milliseconds = 2000,
 }
-
-function find_and_run_workspace_setup(window, pane)
-  local home = os.getenv("HOME")
-  local devenv = dofile(home .. "/.devenv.lua")
-  devenv.setup_wezterm_workspaces(window, pane)
-end
 
 config.keys = {
   {
