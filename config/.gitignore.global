@@ -11,4 +11,5 @@ compile_commands.json
 brady.tfvars
 .aider*
 CONVENTIONS.md
+CRUSH.md
 GEMINI.md
