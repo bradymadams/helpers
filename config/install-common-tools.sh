@@ -14,4 +14,4 @@ apt install \
 
 # Install nvm
 
-# npm i -g pyright typescript typescript-language-server
+# npm i -g pyright typescript typescript-language-server vscode-langservers-extracted
