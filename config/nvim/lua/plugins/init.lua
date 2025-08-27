@@ -28,6 +28,9 @@ return {
   -- Undotree
   { "mbbill/undotree" },
 
+  -- Session management
+  { "Shatur/neovim-session-manager" },
+
   -- UI stuff
   { "sindrets/diffview.nvim" },
   { "Mofiqul/dracula.nvim" },
