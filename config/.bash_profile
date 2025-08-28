@@ -7,7 +7,7 @@ alias python="python3"
 alias vim="nvim"
 alias vimjq="vim -c \%\!jq"
 alias vimf="vim \$(fzf)"
-alias ccat="pygmentize -g"
+alias ccat="pygmentize -g -P style=dracula"
 alias ls="ls --color=always --group-directories-first"
 
 ltree() {
