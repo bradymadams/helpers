@@ -3,7 +3,7 @@
 SCRIPT=$(realpath ${0})
 CFGDIR=$(dirname ${SCRIPT})
 TGTDIR=${1:-${HOME}}
-XDGCFG=${XDG_CONFIG_HOME:-S{HOME}/.config}
+XDGCFG=${XDG_CONFIG_HOME:-${HOME}/.config}
 
 ln -sf ${CFGDIR}/.vimrc.HOME ${TGTDIR}/.vimrc
 ln -sf ${CFGDIR}/.tmux.conf ${TGTDIR}/.tmux.conf
