@@ -13,6 +13,9 @@ ln -sf ${CFGDIR}/nvim ${XDGCFG}
 mkdir -p ${XDGCFG}/i3
 ln -sf ${CFGDIR}/.i3config ${XDGCFG}/i3/config
 
+mkdir -p ${XDGCFG}/i3status
+ln -sf ${CFGDIR}/.i3status ${XDGCFG}/i3status/config
+
 git config --global --add alias.lg "log --oneline"
 git config --global --add core.editor vim
 git config --global --add core.excludesFile ${CFGDIR}/.gitignore.global

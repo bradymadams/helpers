@@ -201,6 +201,14 @@ bindsym Mod1+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        position top
+        padding 1px 0
+        colors {
+            background #111111
+            focused_background #222233
+        }
+        separator_symbol " | "
+        workspace_min_width 40
 }
 
 # Map caps lock to ESC
