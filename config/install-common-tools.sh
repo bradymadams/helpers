@@ -8,6 +8,7 @@ apt install \
     fd-find \
     jq \
     make \
+    pactl \
     ripgrep
 
 # Install uv
