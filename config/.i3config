@@ -5,9 +5,8 @@
 # This config file uses keycodes (bindsym) and was written for the QWERTY
 # layout.
 #
-# To get a config file with the same key positions, but for your current
-# layout, use the i3-config-wizard
-#
+# Hot tips:
+#   Use `xmodmap -pke` to see key codes and names
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -162,6 +161,9 @@ bindsym Mod1+Shift+7 move container to workspace number $ws7
 bindsym Mod1+Shift+8 move container to workspace number $ws8
 bindsym Mod1+Shift+9 move container to workspace number $ws9
 bindsym Mod1+Shift+0 move container to workspace number $ws10
+
+# Move workspaces between screens
+bindsym Mod1+Shift+period move workspace to output next
 
 # reload the configuration file
 bindsym Mod1+Shift+c reload
