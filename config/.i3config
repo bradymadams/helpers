@@ -214,3 +214,6 @@ bar {
 # Map caps lock to ESC
 exec --no-startup-id setxkbmap -option caps:escape
 
+# Set repeat rate for long key presses
+exec --no-startup-id xset r rate 300 75
+
