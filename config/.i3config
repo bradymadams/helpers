@@ -116,7 +116,7 @@ bindsym Mod1+space focus mode_toggle
 bindsym Mod1+a focus parent
 
 # focus the child container
-#bindsym Mod1+d focus child
+bindsym Mod1+z focus child
 
 # move the currently focused window to the scratchpad
 bindsym Mod1+Shift+minus move scratchpad
@@ -225,6 +225,10 @@ client.focused #f8f8f2 #44475a #f8f8f2
 client.focused_inactive #f8f8f2 #282a36 #6272a4
 client.focused_tab_title #f8f8f2 #6272a4 #f8f8f2
 client.unfocused #282a36 #282a36 #6272a4
+
+smart_gaps on
+gaps inner 4px
+gaps outer 8px
 
 # Map caps lock to ESC
 exec --no-startup-id setxkbmap -option caps:escape
