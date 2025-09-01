@@ -236,3 +236,9 @@ exec --no-startup-id setxkbmap -option caps:escape
 # Set repeat rate for long key presses
 exec --no-startup-id xset r rate 300 75
 
+exec_always --no-startup-id wezterm start --class "scratch-terminal"
+for_window [class="scratch-terminal"] floating enable, \
+    move to scratchpad, \
+    resize set 50ppt 50ppt, \
+    move position 25ppt 10ppt
+
