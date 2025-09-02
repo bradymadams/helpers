@@ -239,6 +239,6 @@ exec --no-startup-id xset r rate 300 75
 exec_always --no-startup-id wezterm start --class "scratch-terminal"
 for_window [class="scratch-terminal"] floating enable, \
     move to scratchpad, \
-    resize set 50ppt 50ppt, \
+    resize set 1280 720, \
     move position 25ppt 10ppt
 
