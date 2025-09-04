@@ -230,6 +230,9 @@ smart_gaps on
 gaps inner 4px
 gaps outer 8px
 
+# Don't focus windows on mouse hover (great way to type something in the wrong place, IMO)
+focus_follows_mouse no
+
 # Map caps lock to ESC
 exec_always --no-startup-id setxkbmap -option caps:escape
 
