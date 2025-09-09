@@ -37,7 +37,7 @@ null_ls.setup({
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
-      local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+      local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = group,
