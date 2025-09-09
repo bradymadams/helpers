@@ -46,6 +46,10 @@ null_ls.setup({
           vim.lsp.buf.format({ bufnr = bufnr })
         end,
       })
+
+      vim.keymap.set("n", "<leader>cf", function()
+        vim.lsp.buf.format({ async = true })
+      end, { buffer = bufnr })
     end
   end,
 })
