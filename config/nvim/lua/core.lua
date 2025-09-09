@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  pattern = { "lua", "javascript", "javascriptreact", "typescript", "typescriptreact" },
   callback = function()
     vim.bo.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for
     vim.bo.shiftwidth = 2 -- Number of spaces used for autoindent
