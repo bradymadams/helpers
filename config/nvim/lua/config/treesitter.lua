@@ -27,6 +27,50 @@ require("nvim-treesitter.configs").setup({
       node_decremental = "grm",
     },
   },
+  textobjects = {
+    move = {
+      enable = true,
+      set_jumps = false,
+      goto_next_start = {
+        ["]p"] = "@parameter.inner",
+        ["]f"] = "@function.outer",
+        ["]c"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]F"] = "@function.outer",
+        ["]C"] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[p"] = "@parameter.inner",
+        ["[f"] = "@function.outer",
+        ["[c"] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[F"] = "@function.outer",
+        ["[C"] = "@class.outer",
+      },
+    },
+    select = {
+      enable = true,
+      lookahead = true,
+      selection_modes = {
+        ["@parameter.inner"] = "v",
+      },
+      keymaps = {
+        ["ff"] = "@function.outer",
+        ["ip"] = "@parameter.inner",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      floating_preview_opts = {
+        border = "rounded",
+      },
+      peek_definition_code = {
+        ["<leader>pf"] = "@function.outer",
+      },
+    },
+  },
 })
 
 vim.opt.foldmethod = "expr"
