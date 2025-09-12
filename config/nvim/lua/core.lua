@@ -13,16 +13,13 @@ vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 0
 vim.opt.mouse = ""
 
--- Remap navigation keys
--- 'l' to move left and ';' to move right
---[[
-for i, s in ipairs({ "n", "v", "o" }) do
-  vim.keymap.set(s, "l", "h", { noremap = true })
-  vim.keymap.set(s, ";", "l", { noremap = true })
-  vim.keymap.set(s, "<C-w>l", "<C-w>h", { noremap = true })
-  vim.keymap.set(s, "<C-w>;", "<C-w>l", { noremap = true })
+for i, s in ipairs({ "n", "i" }) do
+  vim.keymap.set(s, "<C-h>", ":wincmd h<CR>", { noremap = true })
+  vim.keymap.set(s, "<C-j>", ":wincmd j<CR>", { noremap = true })
+  vim.keymap.set(s, "<C-k>", ":wincmd k<CR>", { noremap = true })
+  vim.keymap.set(s, "<C-l>", ":wincmd l<CR>", { noremap = true })
 end
-]]
+
 
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
