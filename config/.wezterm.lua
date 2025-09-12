@@ -107,12 +107,12 @@ config.keys = {
     action = wezterm.action.ActivatePaneDirection("Up"),
   },
   {
-    key = "l",
+    key = "h",
     mods = "LEADER",
     action = wezterm.action.ActivatePaneDirection("Left"),
   },
   {
-    key = ";",
+    key = "l",
     mods = "LEADER",
     action = wezterm.action.ActivatePaneDirection("Right"),
   },

@@ -2,9 +2,9 @@
 
 set editing-mode vi
 
-set keymap vi-command
-"l": backward-char
-";": forward-char
+#set keymap vi-command
+#"l": backward-char
+#";": forward-char
 
 set show-mode-in-prompt on
 #set vi-ins-mode-string "+"

@@ -13,13 +13,13 @@ filetype off                  " required
 "nmap <silent> <c-;> :wincmd l<CR>
 
 " map L to left (<-) and ; to right (->) so right hand sits on jkl;
-noremap ; l
-noremap l h
+"noremap ; l
+"noremap l h
 
 "noremap <C-j> <C-w>j
 "noremap <C-k> <C-w>k
-noremap <C-w>l <C-w>h
-noremap <C-w>; <C-w>l
+"noremap <C-w>l <C-w>h
+"noremap <C-w>; <C-w>l
 
 
 "noremap ,k :ls<CR>
