@@ -1,0 +1,3 @@
+[submodule "kb/qmk_firmware"]
+	path = kb/qmk_firmware
+	url = git@github.com:zsa/qmk_firmware.git
