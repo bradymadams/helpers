@@ -236,6 +236,10 @@ focus_follows_mouse no
 # Map caps lock to ESC
 exec_always --no-startup-id setxkbmap -option caps:escape
 
+# Setup US and greek layouts with a toggle shortcut
+exec_always --no-startup-id setxkbmap -layout us,gr
+exec_always --no-startup-id setxkbmap -option grp:win_space_toggle
+
 # Set repeat rate for long key presses
 exec --no-startup-id xset r rate 300 75
 
