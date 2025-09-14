@@ -58,13 +58,13 @@ config.keys = {
   -- Workspaces / Sessions
   {
     key = "s",
-    mods = "LEADER",
+    mods = "CTRL",
     --action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }),
     action = workspace_switcher.switch_workspace(),
   },
   {
     key = "s",
-    mods = "CTRL",
+    mods = "SUPER",
     action = workspace_switcher.switch_to_prev_workspace(),
   },
   {
@@ -81,13 +81,13 @@ config.keys = {
     action = wezterm.action.SpawnTab("CurrentPaneDomain"),
   },
   {
-    key = "n",
-    mods = "LEADER",
+    key = "o",
+    mods = "SUPER",
     action = wezterm.action.ActivateTabRelative(1),
   },
   {
-    key = "p",
-    mods = "LEADER",
+    key = "i",
+    mods = "SUPER",
     action = wezterm.action.ActivateTabRelative(-1),
   },
   {
@@ -98,22 +98,22 @@ config.keys = {
   -- Pane management
   {
     key = "j",
-    mods = "LEADER",
+    mods = "SUPER",
     action = wezterm.action.ActivatePaneDirection("Down"),
   },
   {
     key = "k",
-    mods = "LEADER",
+    mods = "SUPER",
     action = wezterm.action.ActivatePaneDirection("Up"),
   },
   {
     key = "h",
-    mods = "LEADER",
+    mods = "SUPER",
     action = wezterm.action.ActivatePaneDirection("Left"),
   },
   {
     key = "l",
-    mods = "LEADER",
+    mods = "SUPER",
     action = wezterm.action.ActivatePaneDirection("Right"),
   },
   -- Vertical split
