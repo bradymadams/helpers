@@ -40,6 +40,10 @@ Use `qmk userspace-doctor` to verify the userspace is setup correctly.
 
 Run `build.sh` in this directory.
 
+# Flash my keyboard
+
+Run `flash.sh` in this directory.
+
 # Adding keyboard from source downloaded from Oryx
 
 I'm not sure if I'll need to do this often, but I wanted to document my first time doing this so that I can do it again if necessary.
