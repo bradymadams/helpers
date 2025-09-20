@@ -5,3 +5,12 @@
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
+/*
+ * Above are left as is from Oryx. Below are my changes.
+ */
+
+// https://docs.qmk.fm/tap_hold#tapping-term
+#define TAPPING_TERM 175 // Changed from default of 200
+
+// https://docs.qmk.fm/tap_hold#hold-on-other-key-press
+#define HOLD_ON_OTHER_KEY_PRESS
