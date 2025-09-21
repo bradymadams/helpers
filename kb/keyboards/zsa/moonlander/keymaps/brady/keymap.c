@@ -44,23 +44,31 @@ enum tap_dance_codes {
   ),
    */
 
+/*
+ * Tips and hints
+ *  MT(MOD, KC)     MOD when held, otherwise K
+ *  MO(I)           Layer toggle to I while held
+ *  LT(I, KC)       Layer toggle to I while held, otherwhise KC
+ *  OSL(I)          Switch to layer I for one keypress (one shot layer)
+ *  TD(DANCE)       Tap dance: https://docs.qmk.fm/features/tap_dance
+ */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*
    * LAYER 0 (DEFAULT)
    */
   [0] = LAYOUT_moonlander(
-    OSL(1),         KC_1,           KC_2,    LT(3, KC_3),           KC_4,           KC_5,           KC_COMMA,               // ROW 1 - LEFT
-    ST_MACRO_0,     KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,               // ROW 1 - RIGHT
-    KC_DELETE,      KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_EQUAL,               // ROW 2 - LEFT
-    KC_COLN,        KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,                // ROW 2 - RIGHT
-    KC_BSPC,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_GRAVE,               // ROW 3 - LEFT
-    KC_SLASH,       KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        KC_QUOTE,               // ROW 3 - RIGHT
-    KC_LEFT_SHIFT,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
+    OSL(1),         KC_1,           KC_2,    LT(3, KC_3),           KC_4,           KC_5,     KC_TRANSPARENT,               // ROW 1 - LEFT
+    ST_MACRO_0,     KC_6,           KC_7,           KC_8,           KC_9,           KC_0,     KC_TRANSPARENT,               // ROW 1 - RIGHT
+    LT(2, KC_EQUAL),KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,     KC_TRANSPARENT,               // ROW 2 - LEFT
+    KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,                // ROW 2 - RIGHT
+    LT(1, KC_MINUS),KC_A,           KC_S,           KC_D,           KC_F,           KC_G,     KC_TRANSPARENT,               // ROW 3 - LEFT
+    KC_TRANSPARENT, KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        KC_QUOTE,               // ROW 3 - RIGHT
+    KC_GRAVE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
     KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_TAB,                                 // ROW 4 - RIGHT
-    TD(DANCE_0),    KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       MO(1),                                  // ROW 5 - LEFT + RED THUMB KEY (LAST)
-    KC_ENTER,       KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        TD(DANCE_1),                            // ROW 5 - RIGHT + RED THUMB KEY (1)
-    MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),KC_LEFT_GUI,                                                              // ROW 6 - LEFT (THUMB KEYS)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       MO(1),                                  // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_ENTER,       KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
+    MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),MT(MOD_LGUI, KC_DEL),                                                     // ROW 6 - LEFT (THUMB KEYS)
     KC_ENTER,       MT(MOD_LCTL, KC_TAB),MT(MOD_RSFT, KC_SPACE)                                                             // ROW 6 - RIGHT (THUMB KEYS)
   ),
   /*
