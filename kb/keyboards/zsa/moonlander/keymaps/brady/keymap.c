@@ -1,3 +1,4 @@
+#include "defaults.h"
 #include "keycodes.h"
 #include QMK_KEYBOARD_H
 #include "version.h"
@@ -74,10 +75,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ST_MACRO_2,     KC_E,           KC_4,           KC_5,           KC_6,           KC_MINUS,       KC_TRANSPARENT,         // ROW 3 - RIGHT
     KC_TRANSPARENT, KC_PERC,        KC_CIRC,        KC_LCBR,        KC_RCBR,        KC_TILD,                                // ROW 4 - LEFT
     KC_SCLN,        KC_1,           KC_2,           KC_3,           KC_BSLS,        KC_TRANSPARENT,                         // ROW 4 - RIGHT
-    KC_TRANSPARENT, KC_COMMA,       HSV_0_245_245,  HSV_74_255_206, HSV_152_255_255,KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
-    RGB_TOG,        KC_0,           KC_0,           KC_DOT,         KC_EQUAL,       KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
-    RGB_VAD,        RGB_VAI,        TOGGLE_LAYER_COLOR,                                                                     // ROW 6 - LEFT (THUMB KEYS)
-    RGB_SLD,        RGB_HUD,        RGB_HUI                                                                                 // ROW 6 - RIGHT (THUMB KEYS)
+    KC_TRANSPARENT, KC_COMMA,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_TRANSPARENT, KC_0,           KC_0,           KC_DOT,         KC_EQUAL,       KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
   ),
   /*
    * LAYER 2
@@ -100,15 +101,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * LAYER 3 (RGB CONTROL ON LEFT KB, AUDIO CONTROL ON RIGHT KB)
    */
   [3] = LAYOUT_moonlander(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 1 - LEFT
+    UG_VALU, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, UG_HUEU,                       // ROW 1 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, AU_TOGG,                // ROW 1 - RIGHT
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - LEFT
+    UG_VALD, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, UG_HUED,                       // ROW 2 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MU_TOGG,                // ROW 2 - RIGHT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MU_NEXT,                // ROW 3 - RIGHT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - RIGHT
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RGB_MODE_REVERSE, RGB_MODE_FORWARD, KC_TRANSPARENT,                     // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_TRANSPARENT, RGB_TOG, TOGGLE_LAYER_COLOR, RGB_MODE_REVERSE, RGB_MODE_FORWARD, KC_TRANSPARENT,                        // ROW 5 - LEFT + RED THUMB KEY (LAST)
     KC_TRANSPARENT, KC_AUDIO_VOL_UP, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE, KC_TRANSPARENT, KC_TRANSPARENT,                      // ROW 5 - RIGHT + RED THUMB KEY (1)
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
@@ -172,23 +173,23 @@ void keyboard_post_init_user(void) { rgb_matrix_enable(); }
 
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [1] = {
-        LED_GREEN, LED_GREEN, LED_GREEN, LED_GREEN, LED_GREEN,  // COL 1
+        LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 1
         LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 2
-        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_GREEN,  // COL 3
-        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_GREEN,  // COL 4
-        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_GREEN,  // COL 5
+        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_OFF__,  // COL 3
+        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 4
+        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 5
         LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW,             // COL 6
-        LED_GREEN, LED_GREEN, LED_GREEN,                        // COL 7
-        LED_GREEN, LED_GREEN, LED_GREEN, LED_GREEN,             // COL 8 (LEFT THUMB KEYS)
+        LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 7
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
                                                                 // SPLIT
-        LED_GREEN, LED_GREEN, LED_GREEN, LED_GREEN, LED_GREEN,  // COL 16
+        LED_GREEN, LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 16
         LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 15
         LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_YELOW,  // COL 14
         LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_BLUE_,  // COL 13
         LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_BLUE_,  // COL 12
         LED_GREEN, LED_CYAN_, LED_CYAN_, LED_CYAN_,             // COL 11
-        LED_RED__, LED_GREEN, LED_RED__,                        // COL 10
-        LED_GREEN, LED_GREEN, LED_GREEN, LED_GREEN              // COL 9 (RIGHT THUMB KEYS)
+        LED_RED__, LED_OFF__, LED_RED__,                        // COL 10
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
     },
 
     [2] = {
@@ -212,23 +213,23 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     },
 
     [3] = {
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 1
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 2
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 3
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_BLUE_,  // COL 4
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_BLUE_,  // COL 5
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,             // COL 6
-        LED_NONE_, LED_NONE_, LED_NONE_,                        // COL 7
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,             // COL 8 (LEFT THUMB KEYS)
+        LED_WHITE, LED_WHITE, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 1
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_WHITE,  // COL 2
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_WHITE,  // COL 3
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_WHITE,  // COL 4
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_WHITE,  // COL 5
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 6
+        LED_WHITE, LED_WHITE, LED_OFF__,                        // COL 7
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
                                                                 // SPLIT
-        LED_GREEN, LED_GREEN, LED_GREEN, LED_NONE_, LED_NONE_,  // COL 16
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 15
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_GREEN,  // COL 14
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_GREEN,  // COL 13
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_GREEN,  // COL 12
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,             // COL 11
-        LED_NONE_, LED_NONE_, LED_NONE_,                        // COL 10
-        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_              // COL 9 (RIGHT THUMB KEYS)
+        LED_WHITE, LED_WHITE, LED_WHITE, LED_OFF__, LED_OFF__,  // COL 16
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 15
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_WHITE,  // COL 14
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_WHITE,  // COL 13
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_WHITE,  // COL 12
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 11
+        LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 10
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
     },
 };
 // clang-format on
