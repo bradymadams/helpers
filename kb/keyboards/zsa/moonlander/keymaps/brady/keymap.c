@@ -9,6 +9,7 @@
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
+  ARROW,
   VIM_SAVE,
   VIM_SAVE_ALL,
   UP_DIR,
@@ -60,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LT(2, KC_EQUAL),KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,     KC_TRANSPARENT,               // ROW 2 - LEFT
     KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,                // ROW 2 - RIGHT
     LT(1, KC_MINUS),KC_A,           KC_S,           KC_D,           KC_F,           KC_G,     KC_TRANSPARENT,               // ROW 3 - LEFT
-    KC_TRANSPARENT, KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        KC_QUOTE,               // ROW 3 - RIGHT
+    ARROW,          KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        KC_QUOTE,               // ROW 3 - RIGHT
     KC_GRAVE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
     KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_TAB,                                 // ROW 4 - RIGHT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       MO(1),                                  // ROW 5 - LEFT + RED THUMB KEY (LAST)
@@ -401,6 +402,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         wait_ms(2);
         del_mods(QK_MODS_GET_MODS(keycode));
       }
+    }
+    break;
+  case ARROW:
+    if (record->event.pressed) {
+      SEND_STRING("->");
     }
     break;
   case VIM_SAVE:
