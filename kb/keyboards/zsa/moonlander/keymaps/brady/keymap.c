@@ -9,13 +9,10 @@
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
-  HSV_0_245_245,
-  HSV_74_255_206,
-  HSV_152_255_255,
-  ST_MACRO_0,
-  ST_MACRO_1,
-  ST_MACRO_2,
-  ST_MACRO_3,
+  VIM_SAVE,
+  VIM_SAVE_ALL,
+  UP_DIR,
+  PYTHON,
 };
 
 enum tap_dance_codes {
@@ -59,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [0] = LAYOUT_moonlander(
     OSL(1),         KC_1,           KC_2,    LT(3, KC_3),           KC_4,           KC_5,     KC_TRANSPARENT,               // ROW 1 - LEFT
-    ST_MACRO_0,     KC_6,           KC_7,           KC_8,           KC_9,           KC_0,     KC_TRANSPARENT,               // ROW 1 - RIGHT
+    VIM_SAVE,       KC_6,           KC_7,           KC_8,           KC_9,           KC_0,     KC_TRANSPARENT,               // ROW 1 - RIGHT
     LT(2, KC_EQUAL),KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,     KC_TRANSPARENT,               // ROW 2 - LEFT
     KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,                // ROW 2 - RIGHT
     LT(1, KC_MINUS),KC_A,           KC_S,           KC_D,           KC_F,           KC_G,     KC_TRANSPARENT,               // ROW 3 - LEFT
@@ -76,11 +73,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [1] = LAYOUT_moonlander(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_TRANSPARENT,         // ROW 1 - LEFT 
-    ST_MACRO_1,     KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,                 // ROW 1 - RIGHT
+    VIM_SAVE_ALL,   KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,                 // ROW 1 - RIGHT
     KC_TRANSPARENT, KC_EXLM,        KC_AT,          KC_LPRN,        KC_RPRN,        KC_PIPE,        KC_TRANSPARENT,         // ROW 2 - LEFT
     KC_TRANSPARENT, KC_BSPC,        KC_7,           KC_8,           KC_9,           KC_KP_PLUS,     KC_F12,                 // ROW 2 - RIGHT
     KC_TRANSPARENT, KC_HASH,        KC_DLR,         KC_LBRC,        KC_RBRC,        KC_GRAVE,       KC_TRANSPARENT,         // ROW 3 - LEFT
-    ST_MACRO_2,     KC_E,           KC_4,           KC_5,           KC_6,           KC_MINUS,       KC_TRANSPARENT,         // ROW 3 - RIGHT
+    UP_DIR,         KC_E,           KC_4,           KC_5,           KC_6,           KC_MINUS,       KC_TRANSPARENT,         // ROW 3 - RIGHT
     KC_TRANSPARENT, KC_PERC,        KC_CIRC,        KC_LCBR,        KC_RCBR,        KC_TILD,                                // ROW 4 - LEFT
     KC_SCLN,        KC_1,           KC_2,           KC_3,           KC_BSLS,        KC_TRANSPARENT,                         // ROW 4 - RIGHT
     KC_TRANSPARENT, KC_COMMA,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
@@ -130,7 +127,7 @@ const uint16_t PROGMEM combo1[] = {KC_P, KC_ENTER, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_ESCAPE),
-    COMBO(combo1, ST_MACRO_3),
+    COMBO(combo1, PYTHON),
 };
 
 extern rgb_config_t rgb_matrix_config;
@@ -406,26 +403,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     }
     break;
-  case ST_MACRO_0:
+  case VIM_SAVE:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_ESCAPE) SS_DELAY(100) SS_LSFT(SS_TAP(X_SCLN))
                       SS_DELAY(100) SS_TAP(X_W) SS_DELAY(100) SS_TAP(X_ENTER));
     }
     break;
-  case ST_MACRO_1:
+  case VIM_SAVE_ALL:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_ESCAPE) SS_DELAY(100) SS_LSFT(SS_TAP(X_SCLN))
                       SS_DELAY(100) SS_TAP(X_W) SS_DELAY(100) SS_TAP(X_A)
                           SS_DELAY(100) SS_TAP(X_ENTER));
     }
     break;
-  case ST_MACRO_2:
+  case UP_DIR:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_DOT) SS_DELAY(50) SS_TAP(X_DOT) SS_DELAY(50)
                       SS_TAP(X_SLASH));
     }
     break;
-  case ST_MACRO_3:
+  case PYTHON:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_P) SS_DELAY(50) SS_TAP(X_Y) SS_DELAY(50) SS_TAP(X_T)
                       SS_DELAY(50) SS_TAP(X_H) SS_DELAY(50) SS_TAP(X_O)
@@ -440,33 +437,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     if (record->event.pressed) {
       rgblight_mode(1);
-    }
-    return false;
-  case HSV_0_245_245:
-    if (rawhid_state.rgb_control) {
-      return false;
-    }
-    if (record->event.pressed) {
-      rgblight_mode(1);
-      rgblight_sethsv(0, 245, 245);
-    }
-    return false;
-  case HSV_74_255_206:
-    if (rawhid_state.rgb_control) {
-      return false;
-    }
-    if (record->event.pressed) {
-      rgblight_mode(1);
-      rgblight_sethsv(74, 255, 206);
-    }
-    return false;
-  case HSV_152_255_255:
-    if (rawhid_state.rgb_control) {
-      return false;
-    }
-    if (record->event.pressed) {
-      rgblight_mode(1);
-      rgblight_sethsv(152, 255, 255);
     }
     return false;
   }
