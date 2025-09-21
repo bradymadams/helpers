@@ -1,3 +1,4 @@
+#include "keycodes.h"
 #include QMK_KEYBOARD_H
 #include "version.h"
 #define MOON_LED_LEVEL LED_LEVEL
@@ -22,9 +23,33 @@ enum tap_dance_codes {
 };
 
 // clang-format off
+
+  /*
+   * LAYER TEMPLATE
+   *
+  [i] = LAYOUT_moonlander(
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 1 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 1 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
+  ),
+   */
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  /*
+   * LAYER 0 (DEFAULT)
+   */
   [0] = LAYOUT_moonlander(
-    OSL(1),         KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_COMMA,               // ROW 1 - LEFT
+    OSL(1),         KC_1,           KC_2,    LT(3, KC_3),           KC_4,           KC_5,           KC_COMMA,               // ROW 1 - LEFT
     ST_MACRO_0,     KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,               // ROW 1 - RIGHT
     KC_DELETE,      KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_EQUAL,               // ROW 2 - LEFT
     KC_COLN,        KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,                // ROW 2 - RIGHT
@@ -37,33 +62,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),KC_LEFT_GUI,                                                              // ROW 6 - LEFT (THUMB KEYS)
     KC_ENTER,       MT(MOD_LCTL, KC_TAB),MT(MOD_RSFT, KC_SPACE)                                                             // ROW 6 - RIGHT (THUMB KEYS)
   ),
+  /*
+   * LAYER 1
+   */
   [1] = LAYOUT_moonlander(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_TRANSPARENT,         // ROW 1 - LEFT 
     ST_MACRO_1,     KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,                 // ROW 1 - RIGHT
     KC_TRANSPARENT, KC_EXLM,        KC_AT,          KC_LPRN,        KC_RPRN,        KC_PIPE,        KC_TRANSPARENT,         // ROW 2 - LEFT
     KC_TRANSPARENT, KC_BSPC,        KC_7,           KC_8,           KC_9,           KC_KP_PLUS,     KC_F12,                 // ROW 2 - RIGHT
-    KC_TRANSPARENT, KC_HASH,        KC_DLR,         KC_LBRC,        KC_RBRC,        KC_GRAVE,       RGB_MODE_FORWARD,       // ROW 3 - LEFT
+    KC_TRANSPARENT, KC_HASH,        KC_DLR,         KC_LBRC,        KC_RBRC,        KC_GRAVE,       KC_TRANSPARENT,         // ROW 3 - LEFT
     ST_MACRO_2,     KC_E,           KC_4,           KC_5,           KC_6,           KC_MINUS,       KC_TRANSPARENT,         // ROW 3 - RIGHT
     KC_TRANSPARENT, KC_PERC,        KC_CIRC,        KC_LCBR,        KC_RCBR,        KC_TILD,                                // ROW 4 - LEFT
     KC_SCLN,        KC_1,           KC_2,           KC_3,           KC_BSLS,        KC_TRANSPARENT,                         // ROW 4 - RIGHT
-    KC_TRANSPARENT, KC_COMMA,       HSV_0_245_245,  HSV_74_255_206, HSV_152_255_255,KC_TRANSPARENT,                         // ROW 5 - LEFT | RED THUMB KEY (LAST)
+    KC_TRANSPARENT, KC_COMMA,       HSV_0_245_245,  HSV_74_255_206, HSV_152_255_255,KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
     RGB_TOG,        KC_0,           KC_0,           KC_DOT,         KC_EQUAL,       KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
     RGB_VAD,        RGB_VAI,        TOGGLE_LAYER_COLOR,                                                                     // ROW 6 - LEFT (THUMB KEYS)
     RGB_SLD,        RGB_HUD,        RGB_HUI                                                                                 // ROW 6 - RIGHT (THUMB KEYS)
   ),
+  /*
+   * LAYER 2
+   */
   [2] = LAYOUT_moonlander(
-    AU_TOGG,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, CW_TOGG,                // ROW 1 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, CW_TOGG,                // ROW 1 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, QK_BOOT,                // ROW 1 - RIGHT
-    MU_TOGG,        KC_TRANSPARENT, KC_MS_BTN1,     KC_MS_UP,       KC_MS_BTN2,     KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_BTN1,     KC_MS_UP,       KC_MS_BTN2,     KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - RIGHT
-    MU_NEXT,        KC_TRANSPARENT, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PLAY_PAUSE,    // ROW 3 - RIGHT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - LEFT
     KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT, KC_TRANSPARENT,                 // ROW 4 - RIGHT
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT | RED THUMB KEY (LAST)
-    KC_TRANSPARENT, KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,  KC_TRANSPARENT, KC_TRANSPARENT,                       // ROW 5 - RIGHT + RED THUMB KEY (1)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
     KC_TRANSPARENT, KC_TRANSPARENT, KC_WWW_BACK                                                                             // ROW 6 - RIGHT (THUMB KEYS)
+  ),
+  /*
+   * LAYER 3 (RGB CONTROL ON LEFT KB, AUDIO CONTROL ON RIGHT KB)
+   */
+  [3] = LAYOUT_moonlander(
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 1 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, AU_TOGG,                // ROW 1 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MU_TOGG,                // ROW 2 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MU_NEXT,                // ROW 3 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RGB_MODE_REVERSE, RGB_MODE_FORWARD, KC_TRANSPARENT,                     // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_TRANSPARENT, KC_AUDIO_VOL_UP, KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE, KC_TRANSPARENT, KC_TRANSPARENT,                      // ROW 5 - RIGHT + RED THUMB KEY (1)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
   ),
 };
 // clang-format on
@@ -87,7 +135,34 @@ RGB hsv_to_rgb_with_value(HSV hsv) {
 void keyboard_post_init_user(void) { rgb_matrix_enable(); }
 
 // clang-format off
+    /*
+     * LAYER LED COLOR TEMPLATE
+     *
+    [i] = {
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 1
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 2
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 3
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 4
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 5
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__,             // COL 6
+        LED_RED__, LED_RED__, LED_RED__,                        // COL 7
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__,             // COL 8 (LEFT THUMB KEYS)
+                                                                // SPLIT
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 16
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 15
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 14
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 13
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__, LED_RED__,  // COL 12
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__,             // COL 11
+        LED_RED__, LED_RED__, LED_RED__,                        // COL 10
+        LED_RED__, LED_RED__, LED_RED__, LED_RED__              // COL 9 (RIGHT THUMB KEYS)
+    },
+    */
+
 // Colors are in HSV
+#define LED_NONE_ {0, 255, 0} // Use to skip setting the LED, will inherit the default color. 
+#define LED_OFF__ {0, 0, 0}
+#define LED_WHITE {0, 0, 255}
 #define LED_RED__ {0, 255, 255}
 #define LED_YELOW {43, 255, 255}
 #define LED_GREEN {85, 255, 255}
@@ -128,14 +203,33 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
                                                                 // SPLIT
         LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA,  // COL 16
         LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA,  // COL 15
-        LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_GREEN,  // COL 14
-        LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_GREEN,  // COL 13
-        LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_GREEN,  // COL 12
+        LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA,  // COL 14
+        LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA,  // COL 13
+        LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA,  // COL 12
         LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA,             // COL 11
         LED_MGNTA, LED_MGNTA, LED_MGNTA,                        // COL 10
         LED_MGNTA, LED_MGNTA, LED_MGNTA, LED_MGNTA              // COL 9 (RIGHT THUMB KEYS)
     },
 
+    [3] = {
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 1
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 2
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 3
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_BLUE_,  // COL 4
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_BLUE_,  // COL 5
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,             // COL 6
+        LED_NONE_, LED_NONE_, LED_NONE_,                        // COL 7
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,             // COL 8 (LEFT THUMB KEYS)
+                                                                // SPLIT
+        LED_GREEN, LED_GREEN, LED_GREEN, LED_NONE_, LED_NONE_,  // COL 16
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,  // COL 15
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_GREEN,  // COL 14
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_GREEN,  // COL 13
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_, LED_GREEN,  // COL 12
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_,             // COL 11
+        LED_NONE_, LED_NONE_, LED_NONE_,                        // COL 10
+        LED_NONE_, LED_NONE_, LED_NONE_, LED_NONE_              // COL 9 (RIGHT THUMB KEYS)
+    },
 };
 // clang-format on
 
@@ -146,8 +240,11 @@ void set_layer_color(int layer) {
         .s = pgm_read_byte(&ledmap[layer][i][1]),
         .v = pgm_read_byte(&ledmap[layer][i][2]),
     };
-    if (!hsv.h && !hsv.s && !hsv.v) {
-      rgb_matrix_set_color(i, 0, 0, 0);
+    if (!hsv.h && !hsv.v) {
+      if (hsv.s == 0) {
+        rgb_matrix_set_color(i, 0, 0, 0);
+      }
+      // if saturation == 0 we don't set the color (LED_NONE_)
     } else {
       RGB rgb = hsv_to_rgb_with_value(hsv);
       rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
@@ -166,6 +263,9 @@ bool rgb_matrix_indicators_user(void) {
       break;
     case 2:
       set_layer_color(2);
+      break;
+    case 3:
+      set_layer_color(3);
       break;
     default:
       if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
