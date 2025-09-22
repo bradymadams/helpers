@@ -45,7 +45,7 @@ end
 -- Default key mappings
 config.leader = {
   key = "a",
-  mods = "CTRL",
+  mods = "SUPER",
   timeout_milliseconds = 2000,
 }
 
@@ -57,8 +57,8 @@ config.keys = {
   },
   -- Workspaces / Sessions
   {
-    key = "s",
-    mods = "CTRL",
+    key = "w",
+    mods = "SUPER",
     --action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }),
     action = workspace_switcher.switch_workspace(),
   },
