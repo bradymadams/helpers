@@ -20,7 +20,6 @@ for i, s in ipairs({ "n", "i" }) do
   vim.keymap.set(s, "<C-l>", ":wincmd l<CR>", { noremap = true })
 end
 
-
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 

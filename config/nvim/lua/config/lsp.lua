@@ -1,5 +1,4 @@
 -- Setup LSP servers for Python, TypeScript, and C++
-local lspconfig = require("lspconfig")
 
 -- Attach function to set keymaps and capabilities
 local on_attach = function(client, bufnr)
@@ -22,23 +21,25 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Python (using pyright)
-lspconfig.pyright.setup({
+vim.lsp.config("pyright", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
-lspconfig.ruff.setup({})
+vim.lsp.config("ruff", {})
 
 -- C++ (using clangd)
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
 -- JS/TS
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
-lspconfig.eslint.setup({})
+vim.lsp.config("eslint", {})
+
+vim.lsp.enable({ "pyright", "ruff", "clangd", "ts_ls", "eslint" })
