@@ -29,8 +29,16 @@ vim.lsp.config("pyright", {
 vim.lsp.config("ruff", {})
 
 -- C++ (using clangd)
+local clangd_on_attach = vim.lsp.config['clangd'].on_attach
+
 vim.lsp.config("clangd", {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    clangd_on_attach(client, bufnr)
+    on_attach(client, bufnr)
+    local keymap = vim.keymap.set
+    -- Switch between source and header in C++ files
+    keymap("n", "<leader>h", "<Cmd>LspClangdSwitchSourceHeader<CR>", { buffer = bufnr })
+  end,
   capabilities = capabilities,
 })
 
