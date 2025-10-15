@@ -249,3 +249,4 @@ for_window [class="scratch-terminal"] floating enable, \
     resize set 1280 720, \
     move position 25ppt 10ppt
 
+for_window [class="matplotlib"] floating enable
