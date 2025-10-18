@@ -37,4 +37,12 @@ return {
   { "Mofiqul/dracula.nvim" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-tree/nvim-web-devicons" },
+  {
+    "folke/noice.nvim",
+    --  event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
 }
