@@ -1,4 +1,7 @@
 require("aerial").setup({
+  layout = {
+    default_direction = "right",
+  },
   backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
   on_attach = function(bufnr)
     vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
