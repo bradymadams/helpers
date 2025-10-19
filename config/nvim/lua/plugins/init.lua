@@ -37,6 +37,7 @@ return {
   { "Mofiqul/dracula.nvim" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-tree/nvim-web-devicons" },
+  { "stevearc/aerial.nvim" },
   {
     "folke/noice.nvim",
     --  event = "VeryLazy",

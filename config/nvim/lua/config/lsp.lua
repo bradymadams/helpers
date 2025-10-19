@@ -29,7 +29,7 @@ vim.lsp.config("pyright", {
 vim.lsp.config("ruff", {})
 
 -- C++ (using clangd)
-local clangd_on_attach = vim.lsp.config['clangd'].on_attach
+local clangd_on_attach = vim.lsp.config["clangd"].on_attach
 
 vim.lsp.config("clangd", {
   on_attach = function(client, bufnr)

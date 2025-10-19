@@ -26,6 +26,7 @@ require("config.treesitter")
 require("config.theme")
 require("config.diffview")
 require("config.undotree")
+require("config.aerial")
 
 local home = os.getenv("HOME")
 local devenv = dofile(home .. "/.devenv.lua")
