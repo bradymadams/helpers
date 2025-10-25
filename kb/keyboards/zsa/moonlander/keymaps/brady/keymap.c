@@ -16,10 +16,7 @@ enum custom_keycodes {
   PYTHON,
 };
 
-enum tap_dance_codes {
-  DANCE_0,
-  DANCE_1,
-};
+enum tap_dance_codes { TD_CTRL_CTRL_SHIFT };
 
 // clang-format off
 
@@ -64,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ARROW,          KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,  KC_QUOTE,                     // ROW 3 - RIGHT
     KC_GRAVE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
     KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_TAB,                                 // ROW 4 - RIGHT
-    KC_LEFT_CTRL  , KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    TD(TD_CTRL_CTRL_SHIFT), KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT, KC_RIGHT,      KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
     KC_TRANSPARENT, KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
     MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),MT(MOD_LGUI, KC_DEL),                                                     // ROW 6 - LEFT (THUMB KEYS)
     KC_ENTER,       MT(MOD_LCTL, KC_TAB),           KC_SPACE                                                                // ROW 6 - RIGHT (THUMB KEYS)
@@ -323,9 +320,6 @@ uint8_t dance_step(tap_dance_state_t *state) {
   return MORE_TAPS;
 }
 
-void dance_0_finished(tap_dance_state_t *state, void *user_data);
-void dance_0_reset(tap_dance_state_t *state, void *user_data);
-
 void dance_0_finished(tap_dance_state_t *state, void *user_data) {
   dance_state[0].step = dance_step(state);
   switch (dance_state[0].step) {
@@ -350,39 +344,11 @@ void dance_0_reset(tap_dance_state_t *state, void *user_data) {
   }
   dance_state[0].step = 0;
 }
-void dance_1_finished(tap_dance_state_t *state, void *user_data);
-void dance_1_reset(tap_dance_state_t *state, void *user_data);
-
-void dance_1_finished(tap_dance_state_t *state, void *user_data) {
-  dance_state[1].step = dance_step(state);
-  switch (dance_state[1].step) {
-  case SINGLE_HOLD:
-    layer_on(1);
-    break;
-  case DOUBLE_HOLD:
-    layer_on(2);
-    break;
-  }
-}
-
-void dance_1_reset(tap_dance_state_t *state, void *user_data) {
-  wait_ms(10);
-  switch (dance_state[1].step) {
-  case SINGLE_HOLD:
-    layer_off(1);
-    break;
-  case DOUBLE_HOLD:
-    layer_off(2);
-    break;
-  }
-  dance_state[1].step = 0;
-}
 
 tap_dance_action_t tap_dance_actions[] = {
-    [DANCE_0] =
-        ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_0_finished, dance_0_reset),
-    [DANCE_1] =
-        ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_1_finished, dance_1_reset),
+    [TD_CTRL_CTRL_SHIFT] =
+        ACTION_TAP_DANCE_DOUBLE(KC_LEFT_CTRL, KC_LEFT_CTRL | KC_LEFT_SHIFT),
+    // ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_0_finished, dance_0_reset),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
