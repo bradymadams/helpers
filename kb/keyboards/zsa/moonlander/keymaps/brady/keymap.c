@@ -1,5 +1,6 @@
 #include "defaults.h"
 #include "keycodes.h"
+#include "quantum.h"
 #include QMK_KEYBOARD_H
 #include "version.h"
 #define MOON_LED_LEVEL LED_LEVEL
@@ -62,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_GRAVE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
     KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_TAB,                                 // ROW 4 - RIGHT
     TD(TD_CTRL_CTRL_SHIFT), KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT, KC_RIGHT,      KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
-    KC_TRANSPARENT, KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
+    QK_LEAD,        KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
     MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),MT(MOD_LGUI, KC_DEL),                                                     // ROW 6 - LEFT (THUMB KEYS)
     KC_ENTER,       MT(MOD_LCTL, KC_TAB),           KC_SPACE                                                                // ROW 6 - RIGHT (THUMB KEYS)
   ),
@@ -324,10 +325,11 @@ void dance_0_finished(tap_dance_state_t *state, void *user_data) {
   dance_state[0].step = dance_step(state);
   switch (dance_state[0].step) {
   case SINGLE_HOLD:
-    layer_on(1);
+    register_code(KC_LEFT_CTRL);
     break;
   case DOUBLE_HOLD:
-    layer_on(2);
+    register_code(KC_LEFT_CTRL);
+    register_code(KC_LEFT_SHIFT);
     break;
   }
 }
@@ -336,10 +338,11 @@ void dance_0_reset(tap_dance_state_t *state, void *user_data) {
   wait_ms(10);
   switch (dance_state[0].step) {
   case SINGLE_HOLD:
-    layer_off(1);
+    unregister_code(KC_LEFT_CTRL);
     break;
   case DOUBLE_HOLD:
-    layer_off(2);
+    unregister_code(KC_LEFT_CTRL);
+    unregister_code(KC_LEFT_SHIFT);
     break;
   }
   dance_state[0].step = 0;
@@ -347,9 +350,30 @@ void dance_0_reset(tap_dance_state_t *state, void *user_data) {
 
 tap_dance_action_t tap_dance_actions[] = {
     [TD_CTRL_CTRL_SHIFT] =
-        ACTION_TAP_DANCE_DOUBLE(KC_LEFT_CTRL, KC_LEFT_CTRL | KC_LEFT_SHIFT),
-    // ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_0_finished, dance_0_reset),
+        ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_0_finished, dance_0_reset),
 };
+
+void send_custom(uint16_t keycode) {
+  keyrecord_t kr = {.event = {.pressed = true}};
+  process_record_user(keycode, &kr);
+  kr.event.pressed = false;
+  process_record_user(keycode, &kr);
+}
+
+void leader_start_user(void) {}
+
+void leader_end_user(void) {
+  if (leader_sequence_one_key(KC_W)) {
+    send_custom(VIM_SAVE);
+  } else if (leader_sequence_two_keys(KC_W, KC_A)) {
+    send_custom(VIM_SAVE_ALL);
+  } else if (leader_sequence_two_keys(KC_G, KC_S)) {
+    SEND_STRING("git status");
+  } else if (leader_sequence_two_keys(KC_A, KC_S)) {
+    // Leader, a, s => GUI+S
+    tap_code16(LGUI(KC_S));
+  }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {

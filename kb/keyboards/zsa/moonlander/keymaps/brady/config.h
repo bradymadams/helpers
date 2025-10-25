@@ -14,3 +14,7 @@
 
 // https://docs.qmk.fm/tap_hold#hold-on-other-key-press
 #define HOLD_ON_OTHER_KEY_PRESS
+
+// https://docs.qmk.fm/features/leader_key#basic-configuration
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 250
