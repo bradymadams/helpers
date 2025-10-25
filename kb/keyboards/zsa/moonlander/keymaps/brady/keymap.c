@@ -60,12 +60,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     VIM_SAVE,       KC_6,           KC_7,           KC_8,           KC_9,           KC_0,     KC_TRANSPARENT,               // ROW 1 - RIGHT
     LT(2, KC_EQUAL),KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,     KC_END,                       // ROW 2 - LEFT
     KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,     KC_BSLS,                      // ROW 2 - RIGHT
-    LT(1, KC_MINUS),KC_A,           KC_S,           KC_D,           KC_F,           KC_G,     KC_LEFT_CTRL,                 // ROW 3 - LEFT
+    LT(1, KC_MINUS),KC_A,           KC_S,           KC_D,           KC_F,           KC_G,     KC_TRANSPARENT,               // ROW 3 - LEFT
     ARROW,          KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,  KC_QUOTE,                     // ROW 3 - RIGHT
     KC_GRAVE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
     KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_TAB,                                 // ROW 4 - RIGHT
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       MO(1),                                  // ROW 5 - LEFT + RED THUMB KEY (LAST)
-    KC_ENTER,       KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
+    KC_LEFT_CTRL  , KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_TRANSPARENT, KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
     MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),MT(MOD_LGUI, KC_DEL),                                                     // ROW 6 - LEFT (THUMB KEYS)
     KC_ENTER,       MT(MOD_LCTL, KC_TAB),           KC_SPACE                                                                // ROW 6 - RIGHT (THUMB KEYS)
   ),
@@ -83,8 +83,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_SCLN,        KC_1,           KC_2,           KC_3,           KC_BSLS,        KC_TRANSPARENT,                         // ROW 4 - RIGHT
     KC_TRANSPARENT, KC_COMMA,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
     KC_TRANSPARENT, KC_0,           KC_DOT,         KC_NO,          KC_EQUAL,       KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
+    KC_LPRN, KC_LBRC, KC_LCBR,                                                                                              // ROW 6 - LEFT (THUMB KEYS)
+    KC_RCBR, KC_RBRC, KC_RPRN                                                                                               // ROW 6 - RIGHT (THUMB KEYS)
   ),
   /*
    * LAYER 2 (CURRENTLY EMPTY)
@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
   ),
   /*
-   * LAYER 3 (RGB & MOUSE CONTROL ON LEFT KB, AUDIO CONTROL ON RIGHT KB)
+   * LAYER 3 (RGB CONTROL ON LEFT KB, AUDIO & MOUSE CONTROL ON RIGHT KB)
    */
   [3] = LAYOUT_moonlander(
     UG_VALU, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, UG_HUEU,                       // ROW 1 - LEFT
