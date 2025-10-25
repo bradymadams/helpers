@@ -18,3 +18,5 @@
 // https://docs.qmk.fm/features/leader_key#basic-configuration
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 250
+
+#define EXTRAS

@@ -184,7 +184,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 5
         LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW,             // COL 6
         LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 7
-        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
+        LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
                                                                 // SPLIT
         LED_GREEN, LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 16
         LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 15
@@ -193,7 +193,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_BLUE_,  // COL 12
         LED_GREEN, LED_CYAN_, LED_CYAN_, LED_CYAN_,             // COL 11
         LED_RED__, LED_OFF__, LED_RED__,                        // COL 10
-        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
+        LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
     },
 
     [2] = {
@@ -363,16 +363,9 @@ void send_custom(uint16_t keycode) {
 void leader_start_user(void) {}
 
 void leader_end_user(void) {
-  if (leader_sequence_one_key(KC_W)) {
-    send_custom(VIM_SAVE);
-  } else if (leader_sequence_two_keys(KC_W, KC_A)) {
-    send_custom(VIM_SAVE_ALL);
-  } else if (leader_sequence_two_keys(KC_G, KC_S)) {
-    SEND_STRING("git status");
-  } else if (leader_sequence_two_keys(KC_A, KC_S)) {
-    // Leader, a, s => GUI+S
-    tap_code16(LGUI(KC_S));
-  }
+#ifdef EXTRAS
+#include "extras.h"
+#endif
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
