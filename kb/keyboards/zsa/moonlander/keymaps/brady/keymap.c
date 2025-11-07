@@ -81,8 +81,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_SCLN,        KC_1,           KC_2,           KC_3,           KC_BSLS,        KC_TRANSPARENT,                         // ROW 4 - RIGHT
     KC_TRANSPARENT, KC_COMMA,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
     KC_TRANSPARENT, KC_0,           KC_DOT,         KC_NO,          KC_EQUAL,       KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
-    KC_LPRN, KC_LBRC, KC_LCBR,                                                                                              // ROW 6 - LEFT (THUMB KEYS)
-    KC_RCBR, KC_RBRC, KC_RPRN                                                                                               // ROW 6 - RIGHT (THUMB KEYS)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
   ),
   /*
    * LAYER 2 (CURRENTLY EMPTY)
@@ -184,7 +184,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 5
         LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW,             // COL 6
         LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 7
-        LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
                                                                 // SPLIT
         LED_GREEN, LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 16
         LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 15
@@ -193,7 +193,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_BLUE_,  // COL 12
         LED_GREEN, LED_CYAN_, LED_CYAN_, LED_CYAN_,             // COL 11
         LED_RED__, LED_OFF__, LED_RED__,                        // COL 10
-        LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
     },
 
     [2] = {
