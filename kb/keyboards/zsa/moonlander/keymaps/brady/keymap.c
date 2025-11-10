@@ -14,7 +14,10 @@ enum custom_keycodes {
   VIM_SAVE,
   VIM_SAVE_ALL,
   UP_DIR,
-  PYTHON,
+  MATCHING_BRACKETS_PAREN,
+  MATCHING_BRACKETS_CURLY,
+  MATCHING_BRACKETS_SQUAR,
+  MATCHING_BRACKETS_ANGLE,
 };
 
 enum tap_dance_codes { TD_CTRL_CTRL_SHIFT };
@@ -121,12 +124,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-const uint16_t PROGMEM combo0[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM combo1[] = {KC_P, KC_ENTER, COMBO_END};
+const uint16_t PROGMEM combo_escape[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM combo_matching_brackets_paren[] = {KC_LPRN, KC_RPRN,
+                                                          COMBO_END};
+const uint16_t PROGMEM combo_matching_brackets_curly[] = {KC_LCBR, KC_RCBR,
+                                                          COMBO_END};
+const uint16_t PROGMEM combo_matching_brackets_squar[] = {KC_LBRC, KC_RBRC,
+                                                          COMBO_END};
+const uint16_t PROGMEM combo_matching_brackets_angle[] = {KC_LABK, KC_RABK,
+                                                          COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, KC_ESCAPE),
-    COMBO(combo1, PYTHON),
+    COMBO(combo_escape, KC_ESCAPE),
+    COMBO(combo_matching_brackets_paren, MATCHING_BRACKETS_PAREN),
+    COMBO(combo_matching_brackets_curly, MATCHING_BRACKETS_CURLY),
+    COMBO(combo_matching_brackets_squar, MATCHING_BRACKETS_SQUAR),
+    COMBO(combo_matching_brackets_angle, MATCHING_BRACKETS_ANGLE),
 };
 
 extern rgb_config_t rgb_matrix_config;
@@ -411,12 +424,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                       SS_TAP(X_SLASH));
     }
     break;
-  case PYTHON:
+  case MATCHING_BRACKETS_PAREN:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_P) SS_DELAY(50) SS_TAP(X_Y) SS_DELAY(50) SS_TAP(X_T)
-                      SS_DELAY(50) SS_TAP(X_H) SS_DELAY(50) SS_TAP(X_O)
-                          SS_DELAY(50) SS_TAP(X_N) SS_DELAY(50)
-                              SS_TAP(X_SPACE));
+      SEND_STRING(SS_LSFT(SS_TAP(X_9)) SS_LSFT(SS_TAP(X_0)) SS_TAP(X_LEFT));
+    }
+    break;
+  case MATCHING_BRACKETS_CURLY:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LSFT(SS_TAP(X_LEFT_BRACKET))
+                      SS_LSFT(SS_TAP(X_RIGHT_BRACKET)) SS_TAP(X_LEFT));
+    }
+    break;
+  case MATCHING_BRACKETS_SQUAR:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_LEFT_BRACKET) SS_TAP(X_RIGHT_BRACKET)
+                      SS_TAP(X_LEFT));
+    }
+    break;
+  case MATCHING_BRACKETS_ANGLE:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LSFT(SS_TAP(X_COMMA)) SS_LSFT(SS_TAP(X_DOT))
+                      SS_TAP(X_LEFT));
     }
     break;
 
