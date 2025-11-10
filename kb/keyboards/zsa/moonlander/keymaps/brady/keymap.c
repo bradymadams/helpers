@@ -65,8 +65,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ARROW,          KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,  KC_QUOTE,                     // ROW 3 - RIGHT
     KC_GRAVE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
     KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_TAB,                                 // ROW 4 - RIGHT
-    TD(TD_CTRL_CTRL_SHIFT), KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT, KC_RIGHT,      KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
-    QK_LEAD,        KC_UP,          KC_DOWN,        KC_LBRC,        KC_RBRC,        KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
+    TD(TD_CTRL_CTRL_SHIFT), KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,  KC_TRANSPARENT,                // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    QK_LEAD,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
     MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),MT(MOD_LGUI, KC_DEL),                                                     // ROW 6 - LEFT (THUMB KEYS)
     KC_ENTER,       MT(MOD_LCTL, KC_TAB),           KC_SPACE                                                                // ROW 6 - RIGHT (THUMB KEYS)
   ),
