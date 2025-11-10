@@ -45,3 +45,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.softtabstop = 2 -- Number of spaces for <Tab> when editing
   end,
 })
+
+vim.keymap.set("i", "{}", "{}<Esc>ha<CR><CR><Up><Tab>", { noremap = true })
+vim.keymap.set("i", "{};", "{};<Esc>hha<CR><CR><Up><Tab>", { noremap = true })
