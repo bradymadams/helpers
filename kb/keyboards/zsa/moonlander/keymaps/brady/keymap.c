@@ -177,26 +177,6 @@ void keyboard_post_init_user(void) { rgb_matrix_enable(); }
 
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [1] = {
-        LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 1
-        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 2
-        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_OFF__,  // COL 3
-        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 4
-        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 5
-        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW,             // COL 6
-        LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 7
-        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
-                                                                // SPLIT
-        LED_GREEN, LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 16
-        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 15
-        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 14
-        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_YELOW,  // COL 13
-        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_BLUE_,  // COL 12
-        LED_GREEN, LED_CYAN_, LED_CYAN_, LED_CYAN_,             // COL 11
-        LED_RED__, LED_OFF__, LED_RED__,                        // COL 10
-        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
-    },
-
-    [2] = {
         LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 1
         LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 2
         LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 3
@@ -213,6 +193,26 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 12
         LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 11
         LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 10
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
+    },
+
+    [2] = {
+        LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 1
+        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 2
+        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_OFF__,  // COL 3
+        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 4
+        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 5
+        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW,             // COL 6
+        LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 7
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
+                                                                // SPLIT
+        LED_GREEN, LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 16
+        LED_GREEN, LED_YELOW, LED_YELOW, LED_YELOW, LED_YELOW,  // COL 15
+        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_OFF__,  // COL 14
+        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_YELOW,  // COL 13
+        LED_GREEN, LED_BLUE_, LED_BLUE_, LED_BLUE_, LED_BLUE_,  // COL 12
+        LED_GREEN, LED_CYAN_, LED_CYAN_, LED_CYAN_,             // COL 11
+        LED_RED__, LED_OFF__, LED_RED__,                        // COL 10
         LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
     },
 
