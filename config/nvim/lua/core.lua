@@ -46,5 +46,5 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.keymap.set("i", "{}", "{}<Esc>ha<CR><CR><Up><Tab>", { noremap = true })
-vim.keymap.set("i", "{};", "{};<Esc>hha<CR><CR><Up><Tab>", { noremap = true })
+vim.keymap.set("i", "{}", "{}<Esc>ha<CR><Up><Esc>o", { noremap = true })
+vim.keymap.set("i", "{};", "{};<Esc>hha<CR><Up><Esc>o", { noremap = true })
