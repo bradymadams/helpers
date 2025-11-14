@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ARROW,          KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,  KC_QUOTE,                     // ROW 3 - RIGHT
     KC_GRAVE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                   // ROW 4 - LEFT
     KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_TAB,                                 // ROW 4 - RIGHT
-    TD(TD_CTRL_CTRL_SHIFT), KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,  KC_TRANSPARENT,                // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    TD(TD_CTRL_CTRL_SHIFT), KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_SPACE,  KC_TRANSPARENT,                      // ROW 5 - LEFT + RED THUMB KEY (LAST)
     QK_LEAD,        KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
     MT(MOD_LSFT, KC_BSPC),MT(MOD_LALT, KC_ESCAPE),MT(MOD_LGUI, KC_DEL),                                                     // ROW 6 - LEFT (THUMB KEYS)
     KC_ENTER,       MT(MOD_LCTL, KC_TAB),           KC_SPACE                                                                // ROW 6 - RIGHT (THUMB KEYS)
@@ -119,6 +119,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, RGB_TOG, TOGGLE_LAYER_COLOR, RGB_MODE_REVERSE, RGB_MODE_FORWARD, KC_TRANSPARENT,                        // ROW 5 - LEFT + RED THUMB KEY (LAST)
     KC_TRANSPARENT, KC_AUDIO_MUTE, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, KC_TRANSPARENT, KC_TRANSPARENT,                      // ROW 5 - RIGHT + RED THUMB KEY (1)
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
+  ),
+  /*
+   * LAYER 4
+   */
+  [4] = LAYOUT_moonlander(
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 1 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 1 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 2 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,         // ROW 3 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - LEFT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 4 - RIGHT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - LEFT + RED THUMB KEY (LAST)
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                         // ROW 5 - RIGHT + RED THUMB KEY (1)
+    KC_SPACE,       KC_TRANSPARENT, KC_TRANSPARENT,                                                                         // ROW 6 - LEFT (THUMB KEYS)
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT                                                                          // ROW 6 - RIGHT (THUMB KEYS)
   ),
 };
@@ -248,6 +265,26 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
         LED_WHITE, LED_WHITE, LED_OFF__,                        // COL 10
         LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
     },
+
+    [4] = {
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 1
+        LED_OFF__, LED_OFF__, LED_GREEN, LED_OFF__, LED_OFF__,  // COL 2
+        LED_OFF__, LED_GREEN, LED_GREEN, LED_OFF__, LED_OFF__,  // COL 3
+        LED_OFF__, LED_OFF__, LED_GREEN, LED_OFF__, LED_OFF__,  // COL 4
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 5
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 6
+        LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 7
+        LED_GREEN, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 8 (LEFT THUMB KEYS)
+                                                                // SPLIT
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 16
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 15
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 14
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 13
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,  // COL 12
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__,             // COL 11
+        LED_OFF__, LED_OFF__, LED_OFF__,                        // COL 10
+        LED_OFF__, LED_OFF__, LED_OFF__, LED_OFF__              // COL 9 (RIGHT THUMB KEYS)
+    },
 };
 // clang-format on
 
@@ -277,13 +314,10 @@ bool rgb_matrix_indicators_user(void) {
   if (!keyboard_config.disable_layer_led) {
     switch (biton32(layer_state)) {
     case 1:
-      set_layer_color(1);
-      break;
     case 2:
-      set_layer_color(2);
-      break;
     case 3:
-      set_layer_color(3);
+    case 4:
+      set_layer_color(biton32(layer_state));
       break;
     default:
       if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
@@ -376,6 +410,9 @@ void send_custom(uint16_t keycode) {
 void leader_start_user(void) {}
 
 void leader_end_user(void) {
+  if (leader_sequence_one_key(KC_4)) {
+    layer_invert(4);
+  }
 #ifdef EXTRAS
 #include "extras.h"
 #endif
