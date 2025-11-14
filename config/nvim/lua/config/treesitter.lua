@@ -11,6 +11,7 @@ require("nvim-treesitter.configs").setup({
     "bash",
     "json",
     "yaml",
+    "terraform",
   },
   highlight = {
     enable = true,

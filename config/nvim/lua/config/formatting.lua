@@ -34,6 +34,8 @@ null_ls.setup({
     null_ls.builtins.formatting.prettier.with({
       command = "./node_modules/.bin/prettier",
     }),
+    -- Terraform
+    null_ls.builtins.formatting.terraform_fmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
