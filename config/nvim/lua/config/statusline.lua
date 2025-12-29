@@ -1,6 +1,6 @@
 require("lualine").setup({
   options = {
-    theme = "dracula",
+    theme = "everforest",
     section_separators = "",
     component_separators = "|",
     icons_enabled = true,

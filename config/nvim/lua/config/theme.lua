@@ -1,8 +1,5 @@
-require("dracula").setup({
-  transparent_bg = true,
-})
-
-vim.cmd.colorscheme("dracula")
+vim.g.everforest_transparent_background = 2
+vim.cmd.colorscheme("everforest")
 
 -- customize diffview highlight groups
 vim.cmd([[
