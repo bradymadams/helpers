@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.default_workspace = "~"
-config.color_scheme = "Dracula"
+config.color_scheme = "Everforest Dark (Gogh)"
 config.font_size = 10
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = true
