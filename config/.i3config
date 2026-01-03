@@ -61,7 +61,7 @@ bindsym Mod1+Return exec wezterm
 bindsym Mod1+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym Mod1+d exec --no-startup-id dmenu_run -fn 'CourierNew-17' -nb '#282a36' -nf '#bd93f9' -sb '#44475a' -sf '#50fa7b'
+bindsym Mod1+d exec --no-startup-id dmenu_run -fn 'CourierNew-17' -nb '#272E33' -nf '#3A94C5' -sb '#272E33' -sf '#8DA101'
 # A more modern dmenu replacement is rofi:
 # bindsym Mod1+d exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -207,12 +207,12 @@ bar {
     position top
     padding 2px 0
     colors {
-        statusline #f8f8f2
-        background #15161c
+        statusline #D3C6AA
+        background #272E33
 
         # <colorClass> <border> <background> <text> 
-        focused_workspace #f8f8f2 #44475a #f8f8f2
-        inactive_workspace #282a36 #282a36 #6272a4
+        focused_workspace #D3C6AA #495156 #D3C6AA
+        inactive_workspace #272E33 #272E33 #7A8478
     }
     separator_symbol " | "
     workspace_min_width 40
@@ -220,11 +220,11 @@ bar {
 }
 
 # Window colors
-client.background #15161c
-client.focused #f8f8f2 #44475a #f8f8f2
-client.focused_inactive #f8f8f2 #282a36 #6272a4
-client.focused_tab_title #f8f8f2 #6272a4 #f8f8f2
-client.unfocused #282a36 #282a36 #6272a4
+client.background #414B50
+client.focused #D3C6AA #3C4841 #D3C6AA
+client.focused_inactive #272E33 #272E33 #D3C6AA
+# client.focused_tab_title #f8f8f2 #6272a4 #D3C6AA
+client.unfocused #272E33 #272E33 #7A8478
 
 smart_gaps on
 gaps inner 4px
