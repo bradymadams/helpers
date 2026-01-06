@@ -26,7 +26,13 @@ vim.lsp.config("pyright", {
   capabilities = capabilities,
 })
 
-vim.lsp.config("ruff", {})
+vim.lsp.config("ruff", {
+  init_options = {
+    settings = {
+      logLevel = "error",
+    },
+  },
+})
 
 -- C++ (using clangd)
 local clangd_on_attach = vim.lsp.config["clangd"].on_attach
