@@ -16,6 +16,7 @@ return {
   -- Treesitter for syntax highlighting and parsing
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
