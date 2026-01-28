@@ -22,6 +22,15 @@ local function ruff_formatter()
   })
 end
 
+function ignore_lsps(client)
+  -- Generally using prettier via null_ls, and these LSPs can sometimes conflict with formatting
+  return client.name ~= "eslint" and client.name ~= "ts_ls"
+end
+
+vim.keymap.set("n", "<leader>cf", function()
+  vim.lsp.buf.format({ async = true, bufnr = vim.fn.bufnr(), filter = ignore_lsps })
+end)
+
 null_ls.setup({
   sources = {
     -- C++ formatting with clang-format
@@ -38,6 +47,18 @@ null_ls.setup({
     null_ls.builtins.formatting.terraform_fmt,
   },
   on_attach = function(client, bufnr)
+    local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+
+    if filetype == "yaml" then
+      return
+    end
+
+    if filetype == "javascript" or filetype == "typescript" then
+      if client.name ~= "null-ls" then
+        return
+      end
+    end
+
     if client.supports_method("textDocument/formatting") then
       local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
@@ -45,13 +66,12 @@ null_ls.setup({
         group = group,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
+          vim.lsp.buf.format({
+            bufnr = bufnr,
+            filter = ignore_lsps,
+          })
         end,
       })
-
-      vim.keymap.set("n", "<leader>cf", function()
-        vim.lsp.buf.format({ async = true })
-      end, { buffer = bufnr })
     end
   end,
 })

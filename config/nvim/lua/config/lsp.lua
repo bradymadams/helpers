@@ -58,4 +58,6 @@ vim.lsp.config("eslint", {})
 
 vim.lsp.config("terraformls", {})
 
-vim.lsp.enable({ "pyright", "ruff", "clangd", "ts_ls", "eslint", "terraformls" })
+vim.lsp.config("yamlls", {})
+
+vim.lsp.enable({ "pyright", "ruff", "clangd", "ts_ls", "eslint", "terraformls", "yamlls" })
