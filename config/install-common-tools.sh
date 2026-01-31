@@ -9,7 +9,8 @@ apt install \
     jq \
     make \
     pactl \
-    ripgrep
+    ripgrep \
+    zoxide
 
 # Install uv
 
