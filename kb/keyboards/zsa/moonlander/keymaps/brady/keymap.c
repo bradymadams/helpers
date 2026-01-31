@@ -412,6 +412,8 @@ void leader_start_user(void) {}
 void leader_end_user(void) {
   if (leader_sequence_one_key(KC_4)) {
     layer_invert(4);
+  } else if (leader_sequence_one_key(KC_A)) {
+    SEND_STRING("export AWS_PROFILE=");
   }
 #ifdef EXTRAS
 #include "extras.h"
