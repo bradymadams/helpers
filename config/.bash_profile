@@ -10,6 +10,8 @@ alias vimf="vim \$(fzf)"
 alias ccat="pygmentize -g -P style=dracula"
 alias ls="ls --color=always --group-directories-first"
 
+eval "$(zoxide init bash)"
+
 ltree() {
     tree -I '*.pyc|__pycache__' -D $*
 }
