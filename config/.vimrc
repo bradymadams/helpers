@@ -121,6 +121,5 @@ set termguicolors
 "hi LineNr ctermbg=NONE guibg=NONE
 
 colorscheme dracula
-"colorscheme evening
 hi Normal ctermbg=NONE guibg=NONE
 
