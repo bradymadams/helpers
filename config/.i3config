@@ -55,7 +55,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 #bindsym Mod1+Return exec i3-sensible-terminal
-bindsym Mod1+Return exec wezterm
+bindsym Mod1+Return exec wezterm start --always-new-process
 
 # kill focused window
 bindsym Mod1+Shift+q kill
@@ -243,7 +243,7 @@ exec_always --no-startup-id setxkbmap -option grp:win_space_toggle
 # Set repeat rate for long key presses
 exec --no-startup-id xset r rate 300 75
 
-exec --no-startup-id wezterm start --class "scratch-terminal"
+exec --no-startup-id wezterm start --always-new-process --class "scratch-terminal"
 for_window [class="scratch-terminal"] floating enable, \
     move to scratchpad, \
     resize set 1280 720, \
