@@ -17,3 +17,5 @@ apt install \
 # Install nvm
 
 # npm i -g pyright typescript typescript-language-server vscode-langservers-extracted
+
+# uv tool install -p python3.13 qutebrowser --with PyQt6 --with PyQt6-WebEngine

@@ -17,6 +17,9 @@ ln -sf ${CFGDIR}/.i3config ${XDGCFG}/i3/config
 mkdir -p ${XDGCFG}/i3status
 ln -sf ${CFGDIR}/.i3status ${XDGCFG}/i3status/config
 
+mkdir -p ${XDGCFG}/qutebrowser
+ln -sf ${CFGDIR}/.qutebrowser.py ${XDGCFG}/qutebrowser/config.py
+
 # This file needs to be created manually
 ln -sf ${CFGDIR}/.local/.devenv.lua ${TGTDIR}/.devenv.lua
 
