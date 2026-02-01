@@ -5,6 +5,8 @@ These are instructions for setting up the QMK firmware and building and flashing
 1. Initialize and/or update submodules in this repo to pull the `qmk_firmware` repo.  
 1. Install `qmk`. Easily done with `uv`: `uv tool install qmk`. This makes it available as a system wide uv managed tool.
 
+_Note: The remaining steps have been used with success with v1.1.8 of the qmk tool._
+
 Now we need to run the QMK setup script:
 
 1. From the `kb` directory run `qmk setup -H $PWD/qmk_firmware`.
