@@ -84,12 +84,10 @@ autocmd FileType yaml setlocal shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2
 
 au BufNewFile,BufRead *.ts set filetype=typescript
-autocmd FileType javascript,typescript,coffee setlocal shiftwidth=2
-autocmd FileType javascript,typescript,coffee setlocal tabstop=2
+autocmd FileType javascript,typescript setlocal shiftwidth=2
+autocmd FileType javascript,typescript setlocal tabstop=2
 
 au BufNewFile,BufRead *.yaml,*.yml so $HOME/dev/helpers/config/yaml.vim
-au BufNewFile,BufRead *.pug so $HOME/dev/helpers/config/pug.vim
-au BufNewFile,BufRead *.coffee setlocal filetype=coffee
 
 " let fortran_free_source=1
 
