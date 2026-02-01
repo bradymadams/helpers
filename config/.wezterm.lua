@@ -119,8 +119,8 @@ config.keys = {
   -- Vertical split
   {
     -- |
-    key = "%",
-    mods = "LEADER|SHIFT",
+    key = "5",
+    mods = "SUPER",
     action = wezterm.action.SplitPane({
       direction = "Right",
       size = { Percent = 50 },
@@ -129,8 +129,8 @@ config.keys = {
   -- Horizontal split
   {
     -- -
-    key = '"',
-    mods = "LEADER|SHIFT",
+    key = '\'',
+    mods = "SUPER",
     action = wezterm.action.SplitPane({
       direction = "Down",
       size = { Percent = 50 },
