@@ -7,7 +7,7 @@ XDGCFG=${XDG_CONFIG_HOME:-${HOME}/.config}
 
 ln -sf ${CFGDIR}/.inputrc ${TGTDIR}/.inputrc
 ln -sf ${CFGDIR}/.tmux.conf ${TGTDIR}/.tmux.conf
-ln -sf ${CFGDIR}/.vimrc.HOME ${TGTDIR}/.vimrc
+ln -sf ${CFGDIR}/.vimrc ${TGTDIR}/.vimrc
 ln -sf ${CFGDIR}/.wezterm.lua ${TGTDIR}/.wezterm.lua
 ln -sf ${CFGDIR}/nvim ${XDGCFG}
 
