@@ -4,11 +4,12 @@ apt install \
     clang-format \
     cmake \
     g++ \
+    gh \
     git \
     fd-find \
     jq \
     make \
-    pactl \
+    pulseaudio-utils \
     ripgrep \
     zoxide
 
