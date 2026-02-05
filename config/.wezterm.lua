@@ -9,6 +9,11 @@ config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = true
 config.tab_max_width = 32
 config.xcursor_theme = "Yaru" -- https://github.com/wezterm/wezterm/issues/3751
+config.font = wezterm.font_with_fallback({
+  { family = "Maple Mono Normal NL", weight = "Regular" },
+  { family = "JetBrains Mono", weight = "Regular" },
+})
+config.warn_about_missing_glyphs = false
 
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
@@ -129,7 +134,7 @@ config.keys = {
   -- Horizontal split
   {
     -- -
-    key = '\'',
+    key = "'",
     mods = "SUPER",
     action = wezterm.action.SplitPane({
       direction = "Down",
