@@ -222,9 +222,9 @@ bar {
 # Window colors
 client.background #414B50
 client.focused #D3C6AA #3C4841 #D3C6AA
-client.focused_inactive #272E33 #272E33 #D3C6AA
+client.focused_inactive #374145 #272E33 #D3C6AA
 # client.focused_tab_title #f8f8f2 #6272a4 #D3C6AA
-client.unfocused #272E33 #272E33 #7A8478
+client.unfocused #374145 #272E33 #7A8478
 
 smart_gaps on
 gaps inner 4px
