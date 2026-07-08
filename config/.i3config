@@ -217,6 +217,7 @@ bar {
     separator_symbol " | "
     workspace_min_width 40
     tray_padding 3px
+    tray_output primary
 }
 
 # Window colors
