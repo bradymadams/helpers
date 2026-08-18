@@ -61,3 +61,6 @@ vim.lsp.config("terraformls", {})
 vim.lsp.config("yamlls", {})
 
 vim.lsp.enable({ "pyright", "ruff", "clangd", "ts_ls", "eslint", "terraformls", "yamlls" })
+
+-- Disable constant and distracting LSP progress messages
+vim.lsp.handlers["$/progress"] = function() end
