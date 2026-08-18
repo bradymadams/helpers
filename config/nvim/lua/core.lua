@@ -45,4 +45,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.softtabstop = 2 -- Number of spaces for <Tab> when editing
   end,
 })
-

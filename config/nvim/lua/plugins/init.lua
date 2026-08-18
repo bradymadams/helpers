@@ -38,7 +38,7 @@ return {
   { "sainnhe/everforest" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-tree/nvim-web-devicons" },
-  { "stevearc/aerial.nvim" },
+  { "stevearc/aerial.nvim", branch = "nvim-0.11" },
   {
     "folke/noice.nvim",
     --  event = "VeryLazy",
