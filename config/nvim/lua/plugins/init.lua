@@ -47,4 +47,9 @@ return {
       "rcarriga/nvim-notify",
     },
   },
+
+  {
+    "kchmck/vim-coffee-script",
+    ft = { "coffee" }, -- only load for CoffeeScript files
+  },
 }

@@ -12,6 +12,7 @@ require("nvim-treesitter.configs").setup({
     "json",
     "yaml",
     "terraform",
+    "pug",
   },
   highlight = {
     enable = true,
