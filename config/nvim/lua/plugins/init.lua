@@ -16,10 +16,13 @@ return {
   -- Treesitter for syntax highlighting and parsing
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    lazy = false,
     build = ":TSUpdate",
+    branch = "main",
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
+    },
   },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
 
   -- Telescope (fuzzy finder)
   {
@@ -38,7 +41,7 @@ return {
   { "sainnhe/everforest" },
   { "nvim-lualine/lualine.nvim" },
   { "nvim-tree/nvim-web-devicons" },
-  { "stevearc/aerial.nvim", branch = "nvim-0.11" },
+  { "stevearc/aerial.nvim" },
   {
     "folke/noice.nvim",
     --  event = "VeryLazy",

@@ -59,7 +59,7 @@ null_ls.setup({
       end
     end
 
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
 
       vim.api.nvim_create_autocmd("BufWritePre", {

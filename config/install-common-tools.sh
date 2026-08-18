@@ -17,4 +17,9 @@ apt install \
 
 # Install nvm
 
-# npm i -g pyright typescript typescript-language-server vscode-langservers-extracted
+npm i -g \
+    pyright \
+    tree-sitter-cli \
+    typescript \
+    typescript-language-server \
+    vscode-langservers-extracted

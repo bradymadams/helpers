@@ -1,79 +1,101 @@
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
+require("nvim-treesitter").install({
+  "c",
+  "cpp",
+  "python",
+  "javascript",
+  "typescript",
+  "tsx",
+  "lua",
+  "vim",
+  "bash",
+  "json",
+  "yaml",
+  "terraform",
+  "pug",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
     "c",
     "cpp",
     "python",
     "javascript",
     "typescript",
-    "tsx",
+    "typescriptreact",
     "lua",
     "vim",
     "bash",
+    "sh",
     "json",
     "yaml",
     "terraform",
     "pug",
   },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      node_decremental = "grm",
-    },
-  },
-  textobjects = {
-    move = {
-      enable = true,
-      set_jumps = false,
-      goto_next_start = {
-        ["]p"] = "@parameter.inner",
-        ["]f"] = "@function.outer",
-        ["]c"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]F"] = "@function.outer",
-        ["]C"] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[p"] = "@parameter.inner",
-        ["[f"] = "@function.outer",
-        ["[c"] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[F"] = "@function.outer",
-        ["[C"] = "@class.outer",
-      },
-    },
-    select = {
-      enable = true,
-      lookahead = true,
-      selection_modes = {
-        ["@parameter.inner"] = "v",
-      },
-      keymaps = {
-        ["ff"] = "@function.outer",
-        ["ip"] = "@parameter.inner",
-      },
-    },
-    lsp_interop = {
-      enable = true,
-      floating_preview_opts = {
-        border = "rounded",
-      },
-      peek_definition_code = {
-        ["<leader>pf"] = "@function.outer",
-      },
-    },
-  },
+  callback = function()
+    vim.treesitter.start()
+  end,
 })
+
+local select = require("nvim-treesitter-textobjects.select")
+local move = require("nvim-treesitter-textobjects.move")
+
+-- Selection Keymaps (Visual & Operator-pending modes)
+vim.keymap.set({ "x", "o" }, "ff", function()
+  select.select_textobject("@function.outer", "textobjects")
+end, { desc = "Select outer function" })
+
+vim.keymap.set({ "x", "o" }, "ip", function()
+  select.select_textobject("@parameter.inner", "textobjects")
+end, { desc = "Select inner parameter" })
+
+--
+-- Move between classes
+--
+vim.keymap.set({ "n", "x", "o" }, "]c", function()
+  move.goto_next_start("@class.outer", "textobjects")
+end, { desc = "Next class start" })
+
+vim.keymap.set({ "n", "x", "o" }, "[c", function()
+  move.goto_previous_start("@class.outer", "textobjects")
+end, { desc = "Previous class start" })
+
+vim.keymap.set({ "n", "x", "o" }, "]C", function()
+  move.goto_next_end("@class.outer", "textobjects")
+end, { desc = "Next class end" })
+
+vim.keymap.set({ "n", "x", "o" }, "[C", function()
+  move.goto_previous_end("@class.outer", "textobjects")
+end, { desc = "Previous class end" })
+
+--
+-- Move between functions
+--
+vim.keymap.set({ "n", "x", "o" }, "]f", function()
+  move.goto_next_start("@function.outer", "textobjects")
+end, { desc = "Next function start" })
+
+vim.keymap.set({ "n", "x", "o" }, "[f", function()
+  move.goto_previous_start("@function.outer", "textobjects")
+end, { desc = "Previous function start" })
+
+vim.keymap.set({ "n", "x", "o" }, "]F", function()
+  move.goto_next_end("@function.outer", "textobjects")
+end, { desc = "Next function end" })
+
+vim.keymap.set({ "n", "x", "o" }, "[F", function()
+  move.goto_previous_end("@function.outer", "textobjects")
+end, { desc = "Previous function end" })
+
+--
+-- Move between parameters
+--
+vim.keymap.set({ "n", "x", "o" }, "[p", function()
+  move.goto_previous_start("@parameter.inner", "textobjects")
+end, { desc = "Previous parameter start" })
+
+vim.keymap.set({ "n", "x", "o" }, "]p", function()
+  move.goto_next_start("@parameter.inner", "textobjects")
+end, { desc = "Next parameter start" })
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
