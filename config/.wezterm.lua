@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+config.term = "wezterm"
 config.default_workspace = "~"
 config.color_scheme = "Everforest Dark (Gogh)"
 config.font_size = 10
